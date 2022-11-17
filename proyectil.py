@@ -1,0 +1,70 @@
+from constantes import *
+import pygame
+
+class Projectile():
+    def __init__(self, enemigo):
+        self.image_projectile = pygame.image.load(r"C:\Users\vilan\Desktop\Images/red_circle.png")
+        self.image_projectile = pygame.transform.scale(self.image_projectile,(10,10))
+        try:
+            self.pos_x = enemigo.pos_x
+            self.pos_y = enemigo.pos_y 
+        except:
+            self.pos_x = enemigo.rect.x
+            self.pos_y = enemigo.rect.y
+        self.rect_projectile = self.image_projectile.get_rect()
+        self.rect_projectile.x = self.pos_x
+        self.rect_projectile.y = self.pos_y
+        self.direction = enemigo.direction
+
+        self.surface = self.image_projectile
+        #self.rect = self.rect_projectile
+        self.speed = 20
+
+
+    def update(self):
+        if self.direction == "left":
+            self.pos_x -= self.speed
+            self.rect_projectile.x = self.pos_x
+            self.rect_projectile.y = self.pos_y
+        else:
+            #print(self.direction, "PROYECTIL")
+            self.pos_x += self.speed
+            self.rect_projectile.x = self.pos_x
+            self.rect_projectile.y = self.pos_y
+
+    def draw(self, screen):
+        screen.blit(self.surface, (self.pos_x, self.pos_y))
+
+
+
+
+class Magazine():
+    def __init__(self):
+        self.list_projectiles = []
+    
+    def creating_projectiles(self, entity):
+        projectile = Projectile(entity)
+        self.list_projectiles.append(projectile)
+    
+    def update(self, player):
+        for i in range(len(self.list_projectiles)):
+            self.list_projectiles[i].update()
+            #print(self.list_projectiles[i].rect_projectile)
+            #print(player.)
+            if self.list_projectiles[i].rect_projectile.colliderect(player.collition_rect):
+                self.list_projectiles.pop(i)
+                print("COLISION")
+                player.death = True
+                if player.direction == DIRECTION_R:
+                    player.animation = player.death_r
+                else:
+                    player.animation = player.death_l
+
+
+
+    def draw(self, screen):
+        
+        for projectile in self.list_projectiles:
+            if DEBUG:
+                pygame.draw.rect(screen, (200, 29, 249), projectile.rect_projectile)
+            projectile.draw(screen)
