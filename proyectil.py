@@ -3,19 +3,24 @@ import pygame
 
 class Projectile():
     def __init__(self, enemigo):
-        self.image_projectile = pygame.image.load(r"C:\Users\vilan\Desktop\Images/red_circle.png")
+        self.image_projectile = pygame.image.load(r"C:\Users\vilan\OneDrive\Escritorio\images_completisimo\images\chemistry\blue_bubble/blue_bubble__x1_iconic_png_1354829722.png")
         self.image_projectile = pygame.transform.scale(self.image_projectile,(10,10))
         try:
             self.pos_x = enemigo.pos_x
-            self.pos_y = enemigo.pos_y 
+            self.pos_y = enemigo.pos_y + (enemigo.rect.h/2)
         except:
             self.pos_x = enemigo.rect.x
-            self.pos_y = enemigo.rect.y
+            self.pos_y = enemigo.rect.y + (enemigo.rect.h/2)
         self.rect_projectile = self.image_projectile.get_rect()
         self.rect_projectile.x = self.pos_x
         self.rect_projectile.y = self.pos_y
-        self.direction = enemigo.direction
 
+        self.direction = enemigo.direction
+        if enemigo.direction == 1:
+            self.direction = "right"
+        elif enemigo.direction == 0:
+            self.direction = "left"
+        
         self.surface = self.image_projectile
         #self.rect = self.rect_projectile
         self.speed = 20
@@ -41,6 +46,7 @@ class Projectile():
 class Magazine():
     def __init__(self):
         self.list_projectiles = []
+        self.projectile_to_pop = -1
     
     def creating_projectiles(self, entity):
         projectile = Projectile(entity)
@@ -52,14 +58,18 @@ class Magazine():
             #print(self.list_projectiles[i].rect_projectile)
             #print(player.)
             if self.list_projectiles[i].rect_projectile.colliderect(player.collition_rect):
-                self.list_projectiles.pop(i)
+                self.projectile_to_pop = i
                 print("COLISION")
                 player.death = True
-                if player.direction == DIRECTION_R:
-                    player.animation = player.death_r
-                else:
-                    player.animation = player.death_l
 
+                #Esto hay que moverlo al player
+                #if player.direction == DIRECTION_R:
+                #    player.animation = player.death_r
+                #else:
+                #    player.animation = player.death_l
+        if self.projectile_to_pop != -1:
+            self.list_projectiles.pop(self.projectile_to_pop)
+            self.projectile_to_pop = -1
 
 
     def draw(self, screen):

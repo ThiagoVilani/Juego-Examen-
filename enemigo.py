@@ -8,14 +8,15 @@ class Enemy():
     def __init__(self, x, y, platform):
         self.pos_x = x
         self.pos_y = y
-        self.walk_l = Auxiliar.getSurfaceFromSpriteSheet(r"C:\Users\vilan\Desktop\images\inhabitants\dust\walk_left.png", 8, 1)
-        self.walk_r = Auxiliar.getSurfaceFromSpriteSheet(r"C:\Users\vilan\Desktop\images\inhabitants\dust\walk_left.png", 8, 1, True)
+        self.walk_l = Auxiliar.getSurfaceFromSpriteSheet(r"C:\Users\vilan\OneDrive\Escritorio\images\inhabitants\dust\walk_left.png", 8, 1)
+        self.walk_r = Auxiliar.getSurfaceFromSpriteSheet(r"C:\Users\vilan\OneDrive\Escritorio\images\inhabitants\dust\walk_left.png", 8, 1, True)
         self.frame = 0
         self.speed_walk = random.randint(5, 10)
         self.animation = self.walk_l
         self.image = self.animation[self.frame]
         self.rect = self.image.get_rect()
         self.collition_rect = pygame.Rect(self.rect.x + 20, self.rect.y + 6, self.rect.w - 45, self.rect.h - 10)
+        self.death = False
         if platform == None:
             self.right_limit = ANCHO_VENTANA - 100
             self.left_limit = ANCHO_VENTANA - 1000
@@ -26,7 +27,7 @@ class Enemy():
         self.direction = "left"
         self.magazine = Magazine()
         self.start_time = 0
-        self.start_shoot = random.randint(5000, 7000)
+        self.start_shoot = random.randint(3000, 5000)
         self.total_time = 0
         self.shoot_time = 0
         self.update_rate = 50
@@ -35,7 +36,6 @@ class Enemy():
     
     def shoot(self, delta_ms):
         self.start_time += delta_ms
-        print(self.start_time, "start time")
         self.shoot_time  += delta_ms
         if self.start_shoot < self.start_time:
             if self.shoot_time > self.shoot_rate:
@@ -97,13 +97,19 @@ class Enemy():
 class Horde():
     def __init__(self):
         self.enemy_list = []
+        self.enemy_to_pop = -1
 
     def update(self, player, delta_ms):
-        for enemy in self.enemy_list:
-            enemy.update(player, delta_ms)
-            if enemy.pos_x < -50:
-                enemy.pos_x = ANCHO_VENTANA + 50
-            
+        for i in range(len(self.enemy_list)):
+            self.enemy_list[i].update(player, delta_ms)
+            if self.enemy_list[i].pos_x < -50:
+                self.enemy_list[i].pos_x = ANCHO_VENTANA + 50
+            if self.enemy_list[i].death == True:
+                self.enemy_to_pop = i
+        if self.enemy_to_pop != -1:
+            self.enemy_list.pop(self.enemy_to_pop)
+            self.enemy_to_pop = -1
+          
     def draw(self, screen):
         for enemy in self.enemy_list:
             enemy.draw(screen)

@@ -6,29 +6,34 @@ from constantes import *
 from player import Player
 from plataforma import Plataform 
 from enemigo import *
+from rewards import *
 
 flags = DOUBLEBUF
 
 screen = pygame.display.set_mode((ANCHO_VENTANA,ALTO_VENTANA), flags, 16)
 pygame.init()
 clock = pygame.time.Clock()
-tick = pygame.USEREVENT
-pygame.time.set_timer(tick, 90)
-#enemy = Enemy((ANCHO_VENTANA - 150), 480)
-#enemy_2 = Enemy((ANCHO_VENTANA - 150), 350)
-#enemy_3 = Enemy((ANCHO_VENTANA - 150), 100)
-#enemys_list = Horde()
-#enemys_list.enemy_list.append(enemy)
-#enemys_list.enemy_list.append(enemy_2)
-#enemys_list.enemy_list.append(enemy_3)
 game_over = False
 #enemy.creating_list_projectile(1)
 #imagen_game_over = pygame.image.load(r"C:\Users\vilan\OneDrive\Escritorio\game_over.png").convert()
 
-imagen_fondo = pygame.image.load(r"C:\Users\vilan\Desktop\images_completisimo\images\locations\set_bg_01\mountain/all.png").convert()
+imagen_fondo = pygame.image.load(r"C:\Users\vilan\OneDrive\Escritorio\images_completisimo\images\locations\set_bg_01\mountain/all.png").convert()
 imagen_fondo = pygame.transform.scale(imagen_fondo,(ANCHO_VENTANA,ALTO_VENTANA))
-player_1 = Player(x=0,y=420,speed_walk=6,speed_run=12,gravity=14,jump_power=30,frame_rate_ms=100,move_rate_ms=50,jump_height=140,p_scale=0.2,interval_time_jump=300)
+player_1 = Player(x=0,y=410,speed_walk=10,speed_run=12,gravity=14,jump_power=30,frame_rate_ms=100,move_rate_ms=50,jump_height=140,p_scale=0.2,interval_time_jump=300)
 
+
+#           SACAR DE ACA
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+reward_1 = Rewards(700, 350)
+reward_2 = Rewards(200, 100)
+rewards_list = Rewards_list()
+rewards_list.rewards_list.append(reward_1)
+rewards_list.rewards_list.append(reward_2)
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+#      HAY QUE SACAR ESTO LO MAS PRONTO POSIBLE
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 plataform_list = []
 
 #Plataforma inferior
@@ -69,7 +74,10 @@ plataform_list.append(platform_1)
 plataform_list.append(platform_2)
 plataform_list.append(platform_3)
 plataform_list.append(platform_4)
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
+#  ESTO TAMBIEN HAY QUE SACARLO DE ACA
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 enemy = Enemy((ANCHO_VENTANA - 150), 480, None)
 enemy_2 = Enemy((plataform_list[0][random.randint(0, (len(plataform_list[0])))].rect.x), 350, plataform_list[0])
 enemy_3 = Enemy((plataform_list[3][random.randint(0, (len(plataform_list[3])))].rect.x), 100, plataform_list[3])
@@ -77,6 +85,10 @@ enemys_list = Horde()
 enemys_list.enemy_list.append(enemy)
 enemys_list.enemy_list.append(enemy_2)
 enemys_list.enemy_list.append(enemy_3)
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+
 
 while True:   
     total_time = pygame.time.get_ticks()  
@@ -89,17 +101,18 @@ while True:
     delta_ms = clock.tick(FPS)
     screen.blit(imagen_fondo,imagen_fondo.get_rect())
 
+
+
     for plataforma in plataform_list:
         for bloque in plataforma:
             bloque.draw(screen)
-
-    #enemy.update(player_1, delta_ms)
-    #enemy.draw(screen)
     enemys_list.update(player_1, delta_ms)
     enemys_list.draw(screen)
     player_1.events(delta_ms,keys)
-    game_over = player_1.update(delta_ms,plataform_list, enemy)
+    game_over = player_1.update(delta_ms,plataform_list, enemys_list.enemy_list, rewards_list.rewards_list)
     player_1.draw(screen)
+    rewards_list.update(delta_ms, player_1)
+    rewards_list.draw(screen)
     # enemigos update
     # player dibujarlo
     # dibujar todo el nivel
