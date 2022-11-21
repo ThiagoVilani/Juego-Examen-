@@ -6,7 +6,7 @@ class Platform():
         self.frame = 0
         self.pos_x = x
         self.pos_y = y
-        self.image = Auxiliar.getSurfaceFromSpriteSheet(r"C:\Users\vilan\OneDrive\Escritorio\images/tile/sheet1.png",8,8)#[type]
+        self.image = Auxiliar.getSurfaceFromSpriteSheet(r"C:\Users\vilan\Desktop\images/tile/sheet1.png",8,8)#[type]
         self.image = pygame.transform.scale(self.image[1],(50,50))
         self.rect = self.image.get_rect()
         self.rect.x = self.pos_x

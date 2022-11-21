@@ -3,7 +3,7 @@ import pygame
 
 class Projectile():
     def __init__(self, enemigo):
-        self.image_projectile = pygame.image.load(r"C:\Users\vilan\OneDrive\Escritorio\images_completisimo\images\chemistry\blue_bubble/blue_bubble__x1_iconic_png_1354829722.png")
+        self.image_projectile = pygame.image.load(r"C:\Users\vilan\Desktop\images_completisimo\images\chemistry\blue_bubble/blue_bubble__x1_iconic_png_1354829722.png")
         self.image_projectile = pygame.transform.scale(self.image_projectile,(10,10))
         try:
             self.pos_x = enemigo.pos_x
@@ -60,13 +60,8 @@ class Magazine():
             if self.list_projectiles[i].rect_projectile.colliderect(player.collition_rect):
                 self.projectile_to_pop = i
                 print("COLISION")
-                player.death = True
-
-                #Esto hay que moverlo al player
-                #if player.direction == DIRECTION_R:
-                #    player.animation = player.death_r
-                #else:
-                #    player.animation = player.death_l
+                player.lifes -= 1
+                
         if self.projectile_to_pop != -1:
             self.list_projectiles.pop(self.projectile_to_pop)
             self.projectile_to_pop = -1

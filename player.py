@@ -9,19 +9,24 @@ class Player:
         self.walk_r = Auxiliar.getSurfaceFromSpriteSheet("images/caracters/stink/walk.png",15,1,scale=p_scale)[:12]
         '''
 
-        self.stay_r = Auxiliar.getSurfaceFromSeparateFiles(r"C:\Users\vilan\OneDrive\Escritorio/images_completisimo/images/caracters/players/cowgirl/Idle ({0}).png",10,flip=False,scale=p_scale)
-        self.stay_l = Auxiliar.getSurfaceFromSeparateFiles(r"C:\Users\vilan\OneDrive\Escritorio/images_completisimo/images/caracters/players/cowgirl/Idle ({0}).png",10,flip=True,scale=p_scale)
-        self.jump_r = Auxiliar.getSurfaceFromSeparateFiles(r"C:\Users\vilan\OneDrive\Escritorio/images_completisimo/images/caracters/players/cowgirl/Jump ({0}).png",10,flip=False,scale=p_scale)
-        self.jump_l = Auxiliar.getSurfaceFromSeparateFiles(r"C:\Users\vilan\OneDrive\Escritorio/images_completisimo/images/caracters/players/cowgirl/Jump ({0}).png",10,flip=True,scale=p_scale)
-        self.walk_r = Auxiliar.getSurfaceFromSeparateFiles(r"C:\Users\vilan\OneDrive\Escritorio/images_completisimo/images/caracters/players/cowgirl/Run ({0}).png",8,flip=False,scale=p_scale)
-        self.walk_l = Auxiliar.getSurfaceFromSeparateFiles(r"C:\Users\vilan\OneDrive\Escritorio/images_completisimo/images/caracters/players/cowgirl/Run ({0}).png",8,flip=True,scale=p_scale)
-        self.shoot_r = Auxiliar.getSurfaceFromSeparateFiles(r"C:\Users\vilan\OneDrive\Escritorio/images_completisimo/images/caracters/players/cowgirl/Shoot ({0}).png",3,flip=False,scale=p_scale,repeat_frame=2)
-        self.shoot_l = Auxiliar.getSurfaceFromSeparateFiles(r"C:\Users\vilan\OneDrive\Escritorio/images_completisimo/images/caracters/players/cowgirl/Shoot ({0}).png",3,flip=True,scale=p_scale,repeat_frame=2)
-        self.knife_r = Auxiliar.getSurfaceFromSeparateFiles(r"C:\Users\vilan\OneDrive\Escritorio/images_completisimo/images/caracters/players/cowgirl/Melee ({0}).png",7,flip=False,scale=p_scale,repeat_frame=1)
-        self.knife_l = Auxiliar.getSurfaceFromSeparateFiles(r"C:\Users\vilan\OneDrive\Escritorio/images_completisimo/images/caracters/players/cowgirl/Melee ({0}).png",7,flip=True,scale=p_scale,repeat_frame=1)
-        self.death_l = Auxiliar.getSurfaceFromSeparateFiles(r"C:\Users\vilan\OneDrive\Escritorio/images_completisimo/images/caracters/players/cowgirl/Dead ({0}).png",10,flip=True,scale=p_scale)
-        self.death_r = Auxiliar.getSurfaceFromSeparateFiles(r"C:\Users\vilan\OneDrive\Escritorio/images_completisimo/images/caracters/players/cowgirl/Dead ({0}).png",10,flip=False,scale=p_scale)
+        self.stay_r = Auxiliar.getSurfaceFromSeparateFiles(r"C:\Users\vilan\Desktop/images_completisimo/images/caracters/players/cowgirl/Idle ({0}).png",10,flip=False,scale=p_scale)
+        self.stay_l = Auxiliar.getSurfaceFromSeparateFiles(r"C:\Users\vilan\Desktop/images_completisimo/images/caracters/players/cowgirl/Idle ({0}).png",10,flip=True,scale=p_scale)
+        self.jump_r = Auxiliar.getSurfaceFromSeparateFiles(r"C:\Users\vilan\Desktop/images_completisimo/images/caracters/players/cowgirl/Jump ({0}).png",10,flip=False,scale=p_scale)
+        self.jump_l = Auxiliar.getSurfaceFromSeparateFiles(r"C:\Users\vilan\Desktop/images_completisimo/images/caracters/players/cowgirl/Jump ({0}).png",10,flip=True,scale=p_scale)
+        self.walk_r = Auxiliar.getSurfaceFromSeparateFiles(r"C:\Users\vilan\Desktop/images_completisimo/images/caracters/players/cowgirl/Run ({0}).png",8,flip=False,scale=p_scale)
+        self.walk_l = Auxiliar.getSurfaceFromSeparateFiles(r"C:\Users\vilan\Desktop/images_completisimo/images/caracters/players/cowgirl/Run ({0}).png",8,flip=True,scale=p_scale)
+        self.shoot_r = Auxiliar.getSurfaceFromSeparateFiles(r"C:\Users\vilan\Desktop/images_completisimo/images/caracters/players/cowgirl/Shoot ({0}).png",3,flip=False,scale=p_scale,repeat_frame=2)
+        self.shoot_l = Auxiliar.getSurfaceFromSeparateFiles(r"C:\Users\vilan\Desktop/images_completisimo/images/caracters/players/cowgirl/Shoot ({0}).png",3,flip=True,scale=p_scale,repeat_frame=2)
+        self.knife_r = Auxiliar.getSurfaceFromSeparateFiles(r"C:\Users\vilan\Desktop/images_completisimo/images/caracters/players/cowgirl/Melee ({0}).png",7,flip=False,scale=p_scale,repeat_frame=1)
+        self.knife_l = Auxiliar.getSurfaceFromSeparateFiles(r"C:\Users\vilan\Desktop/images_completisimo/images/caracters/players/cowgirl/Melee ({0}).png",7,flip=True,scale=p_scale,repeat_frame=1)
+        self.death_l = Auxiliar.getSurfaceFromSeparateFiles(r"C:\Users\vilan\Desktop/images_completisimo/images/caracters/players/cowgirl/Dead ({0}).png",10,flip=True,scale=p_scale)
+        self.death_r = Auxiliar.getSurfaceFromSeparateFiles(r"C:\Users\vilan\Desktop/images_completisimo/images/caracters/players/cowgirl/Dead ({0}).png",10,flip=False,scale=p_scale)
         
+        self.fruit_ate = False
+        self.enemy_collide_left = False
+        self.enemy_collide_right = False
+        self.enemy_collide_top = False
+        self.lifes = 5
         self.magazine = Magazine()
         self.high_time = 0
         self.flag_high = False
@@ -69,18 +74,19 @@ class Player:
 
 
     def eating_fruits(self, delta_ms, rewards_list):
-        for reward in rewards_list:
-            if reward == True:
-                print(reward.ate)
-            if reward.ate and not self.flag_high:
-                self.speed_walk += 10
-                self.flag_high = True
-                print("en teoria deberia estar mas rapida")
+        print(self.speed_walk)
+        if self.fruit_ate and not self.flag_high:
+            self.speed_walk += 10
+            self.flag_high = True
+            self.fruit_ate = False
+            print("en teoria deberia estar mas rapida")
         if self.flag_high:
             self.high_time += delta_ms
         if self.high_time > 3000:
-            self.flag_high == False
+            self.high_time = 0
+            self.flag_high = False
             self.speed_walk -= 10
+            print("termino el efecto")
 
     def walk(self,direction):
         if(self.is_jump == False and self.is_fall == False):
@@ -202,23 +208,46 @@ class Player:
                 #print(self.frame)
             else: 
                 self.frame = 0
- 
+    
+    def enemy_push_me(self):
+        if self.enemy_collide_left:
+            self.change_x(-50)
+            self.enemy_collide_left = False
+        if self.enemy_collide_right:
+            self.change_x(50)
+            self.enemy_collide_right = False
+        #if self.enemy_collide_top:
+        #    self.change_y(-50)
+        #    self.change_x(-50)
+        #    self.enemy_collide_top = False
+        
+
     def update(self,delta_ms,plataform_list, enemys_list, rewards_list):
         self.total_time += delta_ms
         self.do_movement(delta_ms,plataform_list)
         self.do_animation(delta_ms)
 
         if self.update_rate < self.total_time:
+            self.enemy_push_me()
             for enemy in enemys_list:
                 self.total_time = 0
                 self.magazine.update(enemy)
 
             self.eating_fruits(delta_ms, rewards_list)
 
+            #if self.rect.x < 0:
+            #    self.rect_x = 10
+            #    self.collition_rect.x = 10
+            #    self.ground_collition_rect.x = 10
+            
+
+            if self.lifes == 0:
+                self.death = True
+
             if self.death == True:
-                print("Personaje muerto")
+                #print("Personaje muerto")
                 return True 
- 
+        #print(self.lifes)
         
     
     def draw(self,screen):
@@ -227,10 +256,11 @@ class Player:
             pygame.draw.rect(screen,color=(255,0 ,0),rect=self.collition_rect)
             pygame.draw.rect(screen,color=(255,255,0),rect=self.ground_collition_rect)
         
-        self.image = self.animation[self.frame]
-        screen.blit(self.image,self.rect)
-        self.magazine.draw(screen)
-        
+        if not self.death:                    
+            self.image = self.animation[self.frame]
+            screen.blit(self.image,self.rect)
+            self.magazine.draw(screen)
+            
 
     def events(self,delta_ms,keys):
         self.tiempo_transcurrido += delta_ms

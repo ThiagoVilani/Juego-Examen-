@@ -8,15 +8,19 @@ class Enemy():
     def __init__(self, x, y, platform):
         self.pos_x = x
         self.pos_y = y
-        self.walk_l = Auxiliar.getSurfaceFromSpriteSheet(r"C:\Users\vilan\OneDrive\Escritorio\images\inhabitants\dust\walk_left.png", 8, 1)
-        self.walk_r = Auxiliar.getSurfaceFromSpriteSheet(r"C:\Users\vilan\OneDrive\Escritorio\images\inhabitants\dust\walk_left.png", 8, 1, True)
+        self.walk_l = Auxiliar.getSurfaceFromSpriteSheet(r"C:\Users\vilan\Desktop\images\inhabitants\dust\walk_left.png", 8, 1)
+        self.walk_r = Auxiliar.getSurfaceFromSpriteSheet(r"C:\Users\vilan\Desktop\images\inhabitants\dust\walk_left.png", 8, 1, True)
         self.frame = 0
-        self.speed_walk = random.randint(5, 10)
+        self.speed_walk = random.randint(5, 7)
         self.animation = self.walk_l
         self.image = self.animation[self.frame]
         self.rect = self.image.get_rect()
-        self.collition_rect = pygame.Rect(self.rect.x + 20, self.rect.y + 6, self.rect.w - 45, self.rect.h - 10)
+        self.collition_rect = pygame.Rect(self.rect.x, self.rect.y, self.rect.w - 50 , self.rect.h - 20)
+        self.collition_rect_top = pygame.Rect(self.rect.x + 30, self.rect.y + 6, self.rect.w - 70, self.rect.h - 50)
+        self.collition_rect_left = pygame.Rect(self.rect.x + 20, self.rect.y + 20, self.rect.w - 90, self.rect.h - 40)
+        self.collition_rect_right = pygame.Rect(self.rect.x - 20, self.rect.y + 20, self.rect.w - 90, self.rect.h - 40)
         self.death = False
+        self.lifes = 3
         if platform == None:
             self.right_limit = ANCHO_VENTANA - 100
             self.left_limit = ANCHO_VENTANA - 1000
@@ -75,20 +79,34 @@ class Enemy():
             self.rect.y = self.pos_y
             self.collition_rect.x = self.pos_x + 20
             self.collition_rect.y = self.pos_y + 6
+            self.collition_rect_top.x = self.pos_x + 30
+            self.collition_rect_top.y = self.pos_y + 6
+            self.collition_rect_left.x = self.pos_x + 20
+            self.collition_rect_left.y = self.pos_y + 20
+            self.collition_rect_right.x = self.pos_x + 65
+            self.collition_rect_right.y = self.pos_y + 20
+            
             self.magazine.update(player)
+            
+            if self.lifes == 0:
+                self.death = True
 
-            if self.collition_rect.colliderect(player.collition_rect):
-                player.death = True
-                if player.direction == DIRECTION_R:
-                    player.animation = player.death_r
-                else:
-                    player.animation = player.death_l
-
+            if self.collition_rect_left.colliderect(player.collition_rect):
+                player.lifes -= 1
+                player.enemy_collide_left = True
+            if self.collition_rect_top.colliderect(player.collition_rect):
+                self.death = True
+            if self.collition_rect_right.colliderect(player.collition_rect):
+                player.lifes -= 1
+                player.enemy_collide_right = True
 
 
     def draw(self, screen):
         if DEBUG:
-            pygame.draw.rect(screen, (200, 29, 249), self.collition_rect)
+            pygame.draw.rect(screen, (200, 0,  0), self.collition_rect)
+            #pygame.draw.rect(screen, (50, 29, 49), self.collition_rect_top)
+            #pygame.draw.rect(screen, (200, 29, 249), self.collition_rect_right)
+            #pygame.draw.rect(screen, (20, 29, 249), self.collition_rect_left)
         self.image = self.animation[self.frame]
         screen.blit(self.image, self.rect)
         self.magazine.draw(screen)

@@ -3,7 +3,7 @@ import pygame
 
 class Rewards():
     def __init__(self, pos_x, pos_y):
-        self.image_reward = pygame.image.load(r"C:\Users\vilan\OneDrive\Escritorio\images_completisimo\images\food\banana/banana__x1_iconic_png_1354829403.png")
+        self.image_reward = pygame.image.load(r"C:\Users\vilan\Desktop\images_completisimo\images\food\banana/banana__x1_iconic_png_1354829403.png")
         self.image_reward = pygame.transform.scale(self.image_reward, (37,40))
         self.rect_reward = self.image_reward.get_rect()
         self.rect_reward.x = pos_x
@@ -42,6 +42,7 @@ class Rewards():
             #Fue comido? # Quizas haya que sacarlo en el futuro cercano
             if self.rect_reward.colliderect(entity.rect):
                 self.ate = True   
+                entity.fruit_ate = True
                 print("BANANA comida")         
 
             #Movimiento 
@@ -75,3 +76,11 @@ class Rewards_list():
     def draw(self, screen):
         for reward in self.rewards_list:
             reward.draw(screen)
+
+def create_rewards():
+    reward_1 = Rewards(700, 350)
+    reward_2 = Rewards(200, 100)
+    rewards_list = Rewards_list()
+    rewards_list.rewards_list.append(reward_1)
+    rewards_list.rewards_list.append(reward_2)
+    return rewards_list
