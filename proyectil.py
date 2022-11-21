@@ -22,7 +22,6 @@ class Projectile():
             self.direction = "left"
         
         self.surface = self.image_projectile
-        #self.rect = self.rect_projectile
         self.speed = 20
 
 
@@ -32,7 +31,6 @@ class Projectile():
             self.rect_projectile.x = self.pos_x
             self.rect_projectile.y = self.pos_y
         else:
-            #print(self.direction, "PROYECTIL")
             self.pos_x += self.speed
             self.rect_projectile.x = self.pos_x
             self.rect_projectile.y = self.pos_y
@@ -55,8 +53,6 @@ class Magazine():
     def update(self, player):
         for i in range(len(self.list_projectiles)):
             self.list_projectiles[i].update()
-            #print(self.list_projectiles[i].rect_projectile)
-            #print(player.)
             if self.list_projectiles[i].rect_projectile.colliderect(player.collition_rect):
                 self.projectile_to_pop = i
                 print("COLISION")

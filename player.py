@@ -2,6 +2,7 @@ import pygame
 from constantes import *
 from auxiliar import Auxiliar
 from proyectil import *
+from gui_play_screen import *
 
 class Player:
     def __init__(self,x,y,speed_walk,speed_run,gravity,jump_power,frame_rate_ms,move_rate_ms,jump_height,p_scale=1,interval_time_jump=100) -> None:
@@ -22,11 +23,15 @@ class Player:
         self.death_l = Auxiliar.getSurfaceFromSeparateFiles(r"C:\Users\vilan\Desktop/images_completisimo/images/caracters/players/cowgirl/Dead ({0}).png",10,flip=True,scale=p_scale)
         self.death_r = Auxiliar.getSurfaceFromSeparateFiles(r"C:\Users\vilan\Desktop/images_completisimo/images/caracters/players/cowgirl/Dead ({0}).png",10,flip=False,scale=p_scale)
         
+        self.score_table = Score(200, 10, 300, 60, 20, 30)
+        self.score = 0
         self.fruit_ate = False
         self.enemy_collide_left = False
         self.enemy_collide_right = False
         self.enemy_collide_top = False
         self.lifes = 5
+        self.life_bar = Life_bar()
+        self.life_bar.create_hearts(self.lifes, 10, 20, 30, 30)
         self.magazine = Magazine()
         self.high_time = 0
         self.flag_high = False
@@ -74,8 +79,9 @@ class Player:
 
 
     def eating_fruits(self, delta_ms, rewards_list):
-        print(self.speed_walk)
+        #print(self.speed_walk)
         if self.fruit_ate and not self.flag_high:
+            self.score += 10
             self.speed_walk += 10
             self.flag_high = True
             self.fruit_ate = False
@@ -205,7 +211,6 @@ class Player:
             self.tiempo_transcurrido_animation = 0
             if(self.frame < len(self.animation) - 1):
                 self.frame += 1 
-                #print(self.frame)
             else: 
                 self.frame = 0
     
@@ -216,10 +221,6 @@ class Player:
         if self.enemy_collide_right:
             self.change_x(50)
             self.enemy_collide_right = False
-        #if self.enemy_collide_top:
-        #    self.change_y(-50)
-        #    self.change_x(-50)
-        #    self.enemy_collide_top = False
         
 
     def update(self,delta_ms,plataform_list, enemys_list, rewards_list):
@@ -235,23 +236,20 @@ class Player:
 
             self.eating_fruits(delta_ms, rewards_list)
 
-            #if self.rect.x < 0:
-            #    self.rect_x = 10
-            #    self.collition_rect.x = 10
-            #    self.ground_collition_rect.x = 10
-            
+            self.life_bar.update(self)
+            self.score_table.update(self)
+
+            print(self.score)
 
             if self.lifes == 0:
                 self.death = True
 
             if self.death == True:
-                #print("Personaje muerto")
                 return True 
-        #print(self.lifes)
+        
         
     
     def draw(self,screen):
-        
         if(DEBUG):
             pygame.draw.rect(screen,color=(255,0 ,0),rect=self.collition_rect)
             pygame.draw.rect(screen,color=(255,255,0),rect=self.ground_collition_rect)
@@ -260,7 +258,9 @@ class Player:
             self.image = self.animation[self.frame]
             screen.blit(self.image,self.rect)
             self.magazine.draw(screen)
-            
+        self.life_bar.draw(screen)
+        self.score_table.draw(screen)
+
 
     def events(self,delta_ms,keys):
         self.tiempo_transcurrido += delta_ms

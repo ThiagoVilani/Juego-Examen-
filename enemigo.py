@@ -99,14 +99,15 @@ class Enemy():
             if self.collition_rect_right.colliderect(player.collition_rect):
                 player.lifes -= 1
                 player.enemy_collide_right = True
-
+            if self.death == True:
+                player.score += 100
 
     def draw(self, screen):
         if DEBUG:
             pygame.draw.rect(screen, (200, 0,  0), self.collition_rect)
-            #pygame.draw.rect(screen, (50, 29, 49), self.collition_rect_top)
-            #pygame.draw.rect(screen, (200, 29, 249), self.collition_rect_right)
-            #pygame.draw.rect(screen, (20, 29, 249), self.collition_rect_left)
+            pygame.draw.rect(screen, (50, 29, 49), self.collition_rect_top)
+            pygame.draw.rect(screen, (200, 29, 249), self.collition_rect_right)
+            pygame.draw.rect(screen, (20, 29, 249), self.collition_rect_left)
         self.image = self.animation[self.frame]
         screen.blit(self.image, self.rect)
         self.magazine.draw(screen)
