@@ -8,20 +8,23 @@ from enemigo import *
 from rewards import *
 from gui_play_screen import *
 from tramps import *
+from gui_game_over import *
 
 flags = DOUBLEBUF
 
 screen = pygame.display.set_mode((ANCHO_VENTANA,ALTO_VENTANA), flags, 16)
 pygame.init()
 clock = pygame.time.Clock()
-game_over = False
+game_over = None
 
 imagen_fondo = pygame.image.load(r"C:\Users\vilan\Desktop\images_completisimo\images\locations\set_bg_01\mountain/all.png").convert()
 imagen_fondo = pygame.transform.scale(imagen_fondo,(ANCHO_VENTANA,ALTO_VENTANA))
-player_1 = Player(x=0,y=410,speed_walk=10,speed_run=12,gravity=14,jump_power=30,frame_rate_ms=100,move_rate_ms=50,jump_height=140,p_scale=0.2,interval_time_jump=300)
 rewards_list = create_rewards()
 plataform_list = create_platforms()
 pause_button = Pause_button((ANCHO_VENTANA-60), 10, 40, 40)
+lista_trampas = create_tramps(plataform_list)
+player_1 = Player(x=0,y=410,speed_walk=10,speed_run=12,gravity=14,jump_power=30,frame_rate_ms=100,move_rate_ms=50,jump_height=140,p_scale=0.2,interval_time_jump=300)
+
 
 #  ESTO TAMBIEN HAY QUE SACARLO DE ACA
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -33,7 +36,7 @@ enemys_list.enemy_list.append(enemy)
 enemys_list.enemy_list.append(enemy_2)
 enemys_list.enemy_list.append(enemy_3)
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-lista_trampas = create_tramps(plataform_list)
+
 
 
 while True:   
@@ -48,25 +51,32 @@ while True:
     pause_button.draw(screen)
     pygame.display.flip()
 
-    if not pause_button.pause:
-        keys = pygame.key.get_pressed()
-        delta_ms = clock.tick(FPS)
-        screen.blit(imagen_fondo,imagen_fondo.get_rect())
-        pause_button.draw(screen)
-        for plataforma in plataform_list:
-            for bloque in plataforma:
-                bloque.draw(screen)
-        for lista in lista_trampas:
-            for trampa in lista:
-                trampa.draw(screen)
-        enemys_list.update(player_1, delta_ms)
-        enemys_list.draw(screen)
-        player_1.events(delta_ms,keys)
-        game_over = player_1.update(delta_ms,plataform_list, enemys_list.enemy_list, rewards_list.rewards_list)
-        player_1.draw(screen)
-        rewards_list.update(delta_ms, player_1)
-        rewards_list.draw(screen)
-        pygame.display.flip()
+    if game_over == "win" or  game_over == "lose":
+        game_over_back(screen)
+        game_over_sign(screen, game_over)
+    else:
+        if not pause_button.pause:
+            keys = pygame.key.get_pressed()
+            delta_ms = clock.tick(FPS)
+            screen.blit(imagen_fondo,imagen_fondo.get_rect())
+            pause_button.draw(screen)
+            for plataforma in plataform_list:
+                for bloque in plataforma:
+                    bloque.draw(screen)
+            for lista in lista_trampas:
+                for trampa in lista:
+                    trampa.draw(screen)
+            game_over = enemys_list.update(player_1, delta_ms)
+            enemys_list.draw(screen)
+            player_1.events(delta_ms,keys)
+            game_over = player_1.update(delta_ms,plataform_list, enemys_list.enemy_list, rewards_list.rewards_list, lista_trampas)
+            player_1.draw(screen)
+            rewards_list.update(delta_ms, player_1)
+            rewards_list.draw(screen)
+            pygame.display.flip()
+            if len(enemys_list.enemy_list) == 0:
+                game_over = "win"
+
     
     #print(delta_ms)
 

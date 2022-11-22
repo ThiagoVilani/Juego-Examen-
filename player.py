@@ -29,6 +29,9 @@ class Player:
         self.enemy_collide_left = False
         self.enemy_collide_right = False
         self.enemy_collide_top = False
+        self.tramp_collide_left = False
+        self.tramp_collide_right = False
+        self.tramp_collide_top = False
         self.lifes = 5
         self.life_bar = Life_bar()
         self.life_bar.create_hearts(self.lifes, 10, 20, 30, 30)
@@ -37,7 +40,7 @@ class Player:
         self.flag_high = False
         self.death = False
         self.frame = 0
-        self.lives = 5
+        self.lifes = 5
         self.score = 0
         self.move_x = 0
         self.move_y = 0
@@ -78,6 +81,19 @@ class Player:
         self.interval_time_jump = interval_time_jump
 
 
+
+    def collide_tramp(self, tramp_list):
+        for list in tramp_list:
+            for tramp in list:
+                if self.collition_rect.colliderect(tramp.collition_rect_top):
+                    self.lifes = 0
+                if self.collition_rect.colliderect(tramp.collition_rect_right):
+                    self.change_x(50)
+                if self.collition_rect.colliderect(tramp.collition_rect_left):
+                    self.change_x(-50)
+                    
+
+
     def eating_fruits(self, delta_ms, rewards_list):
         #print(self.speed_walk)
         if self.fruit_ate and not self.flag_high:
@@ -105,6 +121,8 @@ class Player:
                 else:
                     self.move_x = -self.speed_walk
                     self.animation = self.walk_l
+
+
     def shoot(self,on_off = True):
         self.is_shoot = on_off
         if(on_off == True and self.is_jump == False and self.is_fall == False):
@@ -176,7 +194,6 @@ class Player:
             self.tiempo_transcurrido_move += delta_ms
             if(self.tiempo_transcurrido_move >= self.move_rate_ms):
                 self.tiempo_transcurrido_move = 0
-
                 if(abs(self.y_start_jump - self.rect.y) > self.jump_height and self.is_jump):
                     self.move_y = 0
             
@@ -194,7 +211,6 @@ class Player:
 
     def is_on_plataform(self,plataform_list):
         retorno = False
-        
         if(self.ground_collition_rect.bottom >= GROUND_LEVEL):
             retorno = True     
         else:
@@ -223,7 +239,7 @@ class Player:
             self.enemy_collide_right = False
         
 
-    def update(self,delta_ms,plataform_list, enemys_list, rewards_list):
+    def update(self,delta_ms,plataform_list, enemys_list, rewards_list, tramp_list):
         self.total_time += delta_ms
         self.do_movement(delta_ms,plataform_list)
         self.do_animation(delta_ms)
@@ -235,7 +251,7 @@ class Player:
                 self.magazine.update(enemy)
 
             self.eating_fruits(delta_ms, rewards_list)
-
+            self.collide_tramp(tramp_list)
             self.life_bar.update(self)
             self.score_table.update(self)
 
@@ -245,9 +261,9 @@ class Player:
                 self.death = True
 
             if self.death == True:
-                return True 
+                return "lose"
         
-        
+    
     
     def draw(self,screen):
         if(DEBUG):

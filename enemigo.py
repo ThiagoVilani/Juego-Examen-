@@ -17,8 +17,8 @@ class Enemy():
         self.rect = self.image.get_rect()
         self.collition_rect = pygame.Rect(self.rect.x, self.rect.y, self.rect.w - 50 , self.rect.h - 20)
         self.collition_rect_top = pygame.Rect(self.rect.x + 30, self.rect.y + 6, self.rect.w - 70, self.rect.h - 50)
-        self.collition_rect_left = pygame.Rect(self.rect.x + 20, self.rect.y + 20, self.rect.w - 90, self.rect.h - 40)
-        self.collition_rect_right = pygame.Rect(self.rect.x - 20, self.rect.y + 20, self.rect.w - 90, self.rect.h - 40)
+        self.collition_rect_left = pygame.Rect(self.rect.x + 20, self.rect.y + 30, self.rect.w - 90, self.rect.h - 50)
+        self.collition_rect_right = pygame.Rect(self.rect.x - 20, self.rect.y + 30, self.rect.w - 90, self.rect.h - 50)
         self.death = False
         self.lifes = 3
         if platform == None:
@@ -82,20 +82,20 @@ class Enemy():
             self.collition_rect_top.x = self.pos_x + 30
             self.collition_rect_top.y = self.pos_y + 6
             self.collition_rect_left.x = self.pos_x + 20
-            self.collition_rect_left.y = self.pos_y + 20
+            self.collition_rect_left.y = self.pos_y + 30
             self.collition_rect_right.x = self.pos_x + 65
-            self.collition_rect_right.y = self.pos_y + 20
+            self.collition_rect_right.y = self.pos_y + 30
             
             self.magazine.update(player)
             
-            if self.lifes == 0:
+            if self.lifes < 1:
                 self.death = True
 
             if self.collition_rect_left.colliderect(player.collition_rect):
                 player.lifes -= 1
                 player.enemy_collide_left = True
             if self.collition_rect_top.colliderect(player.collition_rect):
-                self.death = True
+                self.lifes = 0
             if self.collition_rect_right.colliderect(player.collition_rect):
                 player.lifes -= 1
                 player.enemy_collide_right = True
