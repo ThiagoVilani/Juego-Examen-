@@ -4,7 +4,7 @@ import random
 
 class Tramp():
     def __init__(self, platform):
-        self.image = pygame.image.load(r"C:\Users\vilan\Desktop\images_completisimo\images\tileset\space_ship\Tiles/spike.png")
+        self.image = pygame.image.load(r"C:\Users\vilan\OneDrive\Escritorio\images_completisimo\images\tileset\space_ship\Tiles/spike.png")
         self.image = pygame.transform.scale(self.image, (40,40))
         self.rect = self.image.get_rect()
         self.rect.x = random.randint(platform[0].rect.x, platform[-1].rect.x)
@@ -12,10 +12,6 @@ class Tramp():
         self.collition_rect_top = pygame.Rect(self.rect.x+15, (self.rect.y+20), (self.rect.w-30), (self.rect.h-30))
         self.collition_rect_left = pygame.Rect((self.rect.x), (self.rect.y+25), (self.rect.w-30), (self.rect.h-35))
         self.collition_rect_right = pygame.Rect((self.rect.x+30), (self.rect.y+25), (self.rect.w-30), (self.rect.h-35))
-
-
-    def update(self):
-        pass
 
 
     def draw(self, screen):

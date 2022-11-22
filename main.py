@@ -17,7 +17,7 @@ pygame.init()
 clock = pygame.time.Clock()
 game_over = None
 
-imagen_fondo = pygame.image.load(r"C:\Users\vilan\Desktop\images_completisimo\images\locations\set_bg_01\mountain/all.png").convert()
+imagen_fondo = pygame.image.load(r"C:\Users\vilan\OneDrive\Escritorio\images_completisimo\images\locations\set_bg_01\mountain/all.png").convert()
 imagen_fondo = pygame.transform.scale(imagen_fondo,(ANCHO_VENTANA,ALTO_VENTANA))
 rewards_list = create_rewards()
 plataform_list = create_platforms()
@@ -29,8 +29,8 @@ player_1 = Player(x=0,y=410,speed_walk=10,speed_run=12,gravity=14,jump_power=30,
 #  ESTO TAMBIEN HAY QUE SACARLO DE ACA
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 enemy = Enemy((ANCHO_VENTANA - 150), 480, None)
-enemy_2 = Enemy((plataform_list[0][random.randint(0, (len(plataform_list[0])))].rect.x), 350, plataform_list[0])
-enemy_3 = Enemy((plataform_list[3][random.randint(0, (len(plataform_list[3])))].rect.x), 100, plataform_list[3])
+enemy_2 = Enemy((plataform_list[0][random.randint(0, len(plataform_list[0])-1)].rect.x), 350, plataform_list[0])
+enemy_3 = Enemy((plataform_list[3][random.randint(0, len(plataform_list[3])-1)].rect.x), 100, plataform_list[3])
 enemys_list = Horde()
 enemys_list.enemy_list.append(enemy)
 enemys_list.enemy_list.append(enemy_2)

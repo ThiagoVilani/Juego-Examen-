@@ -10,18 +10,18 @@ class Player:
         self.walk_r = Auxiliar.getSurfaceFromSpriteSheet("images/caracters/stink/walk.png",15,1,scale=p_scale)[:12]
         '''
 
-        self.stay_r = Auxiliar.getSurfaceFromSeparateFiles(r"C:\Users\vilan\Desktop/images_completisimo/images/caracters/players/cowgirl/Idle ({0}).png",10,flip=False,scale=p_scale)
-        self.stay_l = Auxiliar.getSurfaceFromSeparateFiles(r"C:\Users\vilan\Desktop/images_completisimo/images/caracters/players/cowgirl/Idle ({0}).png",10,flip=True,scale=p_scale)
-        self.jump_r = Auxiliar.getSurfaceFromSeparateFiles(r"C:\Users\vilan\Desktop/images_completisimo/images/caracters/players/cowgirl/Jump ({0}).png",10,flip=False,scale=p_scale)
-        self.jump_l = Auxiliar.getSurfaceFromSeparateFiles(r"C:\Users\vilan\Desktop/images_completisimo/images/caracters/players/cowgirl/Jump ({0}).png",10,flip=True,scale=p_scale)
-        self.walk_r = Auxiliar.getSurfaceFromSeparateFiles(r"C:\Users\vilan\Desktop/images_completisimo/images/caracters/players/cowgirl/Run ({0}).png",8,flip=False,scale=p_scale)
-        self.walk_l = Auxiliar.getSurfaceFromSeparateFiles(r"C:\Users\vilan\Desktop/images_completisimo/images/caracters/players/cowgirl/Run ({0}).png",8,flip=True,scale=p_scale)
-        self.shoot_r = Auxiliar.getSurfaceFromSeparateFiles(r"C:\Users\vilan\Desktop/images_completisimo/images/caracters/players/cowgirl/Shoot ({0}).png",3,flip=False,scale=p_scale,repeat_frame=2)
-        self.shoot_l = Auxiliar.getSurfaceFromSeparateFiles(r"C:\Users\vilan\Desktop/images_completisimo/images/caracters/players/cowgirl/Shoot ({0}).png",3,flip=True,scale=p_scale,repeat_frame=2)
-        self.knife_r = Auxiliar.getSurfaceFromSeparateFiles(r"C:\Users\vilan\Desktop/images_completisimo/images/caracters/players/cowgirl/Melee ({0}).png",7,flip=False,scale=p_scale,repeat_frame=1)
-        self.knife_l = Auxiliar.getSurfaceFromSeparateFiles(r"C:\Users\vilan\Desktop/images_completisimo/images/caracters/players/cowgirl/Melee ({0}).png",7,flip=True,scale=p_scale,repeat_frame=1)
-        self.death_l = Auxiliar.getSurfaceFromSeparateFiles(r"C:\Users\vilan\Desktop/images_completisimo/images/caracters/players/cowgirl/Dead ({0}).png",10,flip=True,scale=p_scale)
-        self.death_r = Auxiliar.getSurfaceFromSeparateFiles(r"C:\Users\vilan\Desktop/images_completisimo/images/caracters/players/cowgirl/Dead ({0}).png",10,flip=False,scale=p_scale)
+        self.stay_r = Auxiliar.getSurfaceFromSeparateFiles(r"C:\Users\vilan\OneDrive\Escritorio/images_completisimo/images/caracters/players/cowgirl/Idle ({0}).png",10,flip=False,scale=p_scale)
+        self.stay_l = Auxiliar.getSurfaceFromSeparateFiles(r"C:\Users\vilan\OneDrive\Escritorio/images_completisimo/images/caracters/players/cowgirl/Idle ({0}).png",10,flip=True,scale=p_scale)
+        self.jump_r = Auxiliar.getSurfaceFromSeparateFiles(r"C:\Users\vilan\OneDrive\Escritorio/images_completisimo/images/caracters/players/cowgirl/Jump ({0}).png",10,flip=False,scale=p_scale)
+        self.jump_l = Auxiliar.getSurfaceFromSeparateFiles(r"C:\Users\vilan\OneDrive\Escritorio/images_completisimo/images/caracters/players/cowgirl/Jump ({0}).png",10,flip=True,scale=p_scale)
+        self.walk_r = Auxiliar.getSurfaceFromSeparateFiles(r"C:\Users\vilan\OneDrive\Escritorio/images_completisimo/images/caracters/players/cowgirl/Run ({0}).png",8,flip=False,scale=p_scale)
+        self.walk_l = Auxiliar.getSurfaceFromSeparateFiles(r"C:\Users\vilan\OneDrive\Escritorio/images_completisimo/images/caracters/players/cowgirl/Run ({0}).png",8,flip=True,scale=p_scale)
+        self.shoot_r = Auxiliar.getSurfaceFromSeparateFiles(r"C:\Users\vilan\OneDrive\Escritorio/images_completisimo/images/caracters/players/cowgirl/Shoot ({0}).png",3,flip=False,scale=p_scale,repeat_frame=2)
+        self.shoot_l = Auxiliar.getSurfaceFromSeparateFiles(r"C:\Users\vilan\OneDrive\Escritorio/images_completisimo/images/caracters/players/cowgirl/Shoot ({0}).png",3,flip=True,scale=p_scale,repeat_frame=2)
+        self.knife_r = Auxiliar.getSurfaceFromSeparateFiles(r"C:\Users\vilan\OneDrive\Escritorio/images_completisimo/images/caracters/players/cowgirl/Melee ({0}).png",7,flip=False,scale=p_scale,repeat_frame=1)
+        self.knife_l = Auxiliar.getSurfaceFromSeparateFiles(r"C:\Users\vilan\OneDrive\Escritorio/images_completisimo/images/caracters/players/cowgirl/Melee ({0}).png",7,flip=True,scale=p_scale,repeat_frame=1)
+        self.death_l = Auxiliar.getSurfaceFromSeparateFiles(r"C:\Users\vilan\OneDrive\Escritorio/images_completisimo/images/caracters/players/cowgirl/Dead ({0}).png",10,flip=True,scale=p_scale)
+        self.death_r = Auxiliar.getSurfaceFromSeparateFiles(r"C:\Users\vilan\OneDrive\Escritorio/images_completisimo/images/caracters/players/cowgirl/Dead ({0}).png",10,flip=False,scale=p_scale)
         
         self.score_table = Score(200, 10, 300, 60, 20, 30)
         self.score = 0

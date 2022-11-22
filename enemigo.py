@@ -8,8 +8,8 @@ class Enemy():
     def __init__(self, x, y, platform):
         self.pos_x = x
         self.pos_y = y
-        self.walk_l = Auxiliar.getSurfaceFromSpriteSheet(r"C:\Users\vilan\Desktop\images\inhabitants\dust\walk_left.png", 8, 1)
-        self.walk_r = Auxiliar.getSurfaceFromSpriteSheet(r"C:\Users\vilan\Desktop\images\inhabitants\dust\walk_left.png", 8, 1, True)
+        self.walk_l = Auxiliar.getSurfaceFromSpriteSheet(r"C:\Users\vilan\OneDrive\Escritorio\images\inhabitants\dust\walk_left.png", 8, 1)
+        self.walk_r = Auxiliar.getSurfaceFromSpriteSheet(r"C:\Users\vilan\OneDrive\Escritorio\images\inhabitants\dust\walk_left.png", 8, 1, True)
         self.frame = 0
         self.speed_walk = random.randint(5, 7)
         self.animation = self.walk_l

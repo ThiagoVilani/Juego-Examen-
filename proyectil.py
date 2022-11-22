@@ -3,7 +3,7 @@ import pygame
 
 class Projectile():
     def __init__(self, enemigo):
-        self.image_projectile = pygame.image.load(r"C:\Users\vilan\Desktop\images_completisimo\images\chemistry\blue_bubble/blue_bubble__x1_iconic_png_1354829722.png")
+        self.image_projectile = pygame.image.load(r"C:\Users\vilan\OneDrive\Escritorio\images_completisimo\images\chemistry\blue_bubble/blue_bubble__x1_iconic_png_1354829722.png")
         self.image_projectile = pygame.transform.scale(self.image_projectile,(10,10))
         try:
             self.pos_x = enemigo.pos_x

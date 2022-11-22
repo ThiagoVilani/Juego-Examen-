@@ -3,7 +3,7 @@ import pygame
 
 class Rewards():
     def __init__(self, pos_x, pos_y):
-        self.image_reward = pygame.image.load(r"C:\Users\vilan\Desktop\images_completisimo\images\food\banana/banana__x1_iconic_png_1354829403.png")
+        self.image_reward = pygame.image.load(r"C:\Users\vilan\OneDrive\Escritorio\images_completisimo\images\food\banana/banana__x1_iconic_png_1354829403.png")
         self.image_reward = pygame.transform.scale(self.image_reward, (37,40))
         self.rect_reward = self.image_reward.get_rect()
         self.rect_reward.x = pos_x
