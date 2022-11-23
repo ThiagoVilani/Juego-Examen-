@@ -133,3 +133,12 @@ class Horde():
         for enemy in self.enemy_list:
             enemy.draw(screen)
         
+def create_enemys_list(plataform_list):
+    enemy = Enemy((ANCHO_VENTANA - 150), 480, None)
+    enemy_2 = Enemy((plataform_list[0][random.randint(0, len(plataform_list[0])-1)].rect.x), 350, plataform_list[0])
+    enemy_3 = Enemy((plataform_list[3][random.randint(0, len(plataform_list[3])-1)].rect.x), 100, plataform_list[3])
+    enemys_list = Horde()
+    enemys_list.enemy_list.append(enemy)
+    enemys_list.enemy_list.append(enemy_2)
+    enemys_list.enemy_list.append(enemy_3)
+    return enemys_list

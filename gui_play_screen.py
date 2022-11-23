@@ -43,43 +43,11 @@ class Score():
         
         self.numbers_list = []
         
+        #Cargo las imagenes de los numeros
         for i in range(9):
             number = pygame.image.load(f"C:/Users/vilan/OneDrive/Escritorio/images_completisimo/images/gui/jungle/bubble/{i}.png")
             number = pygame.transform.scale(number, (w_number, h_number))
             self.numbers_list.append(number)
-
-       
-       #self.image_number_zero = pygame.image.load(r"C:\Users\vilan\OneDrive\Escritorio\images_completisimo\images\gui\jungle\bubble/0.png")
-       #self.image_number_zero = pygame.transform.scale(self.image_number_zero, (w_number, h_number))
-       #self.image_number_one = pygame.image.load(r"C:\Users\vilan\OneDrive\Escritorio\images_completisimo\images\gui\jungle\bubble/1.png")
-       #self.image_number_one = pygame.transform.scale(self.image_number_one, (w_number, h_number))
-       #self.image_number_two = pygame.image.load(r"C:\Users\vilan\OneDrive\Escritorio\images_completisimo\images\gui\jungle\bubble/2.png")
-       #self.image_number_two = pygame.transform.scale(self.image_number_two, (w_number, h_number))
-       #self.image_number_three = pygame.image.load(r"C:\Users\vilan\OneDrive\Escritorio\images_completisimo\images\gui\jungle\bubble/3.png")
-       #self.image_number_three = pygame.transform.scale(self.image_number_three, (w_number, h_number))
-       #self.image_number_four = pygame.image.load(r"C:\Users\vilan\OneDrive\Escritorio\images_completisimo\images\gui\jungle\bubble/4.png")
-       #self.image_number_four = pygame.transform.scale(self.image_number_four, (w_number, h_number))
-       #self.image_number_five = pygame.image.load(r"C:\Users\vilan\OneDrive\Escritorio\images_completisimo\images\gui\jungle\bubble/5.png")
-       #self.image_number_five = pygame.transform.scale(self.image_number_five, (w_number, h_number))
-       #self.image_number_six = pygame.image.load(r"C:\Users\vilan\OneDrive\Escritorio\images_completisimo\images\gui\jungle\bubble/6.png")
-       #self.image_number_six = pygame.transform.scale(self.image_number_six, (w_number, h_number))
-       #self.image_number_seven = pygame.image.load(r"C:\Users\vilan\OneDrive\Escritorio\images_completisimo\images\gui\jungle\bubble/7.png")
-       #self.image_number_seven = pygame.transform.scale(self.image_number_seven, (w_number, h_number))
-       #self.image_number_eight = pygame.image.load(r"C:\Users\vilan\OneDrive\Escritorio\images_completisimo\images\gui\jungle\bubble/8.png")
-       #self.image_number_eight = pygame.transform.scale(self.image_number_eight, (w_number, h_number))
-       #self.image_number_nine = pygame.image.load(r"C:\Users\vilan\OneDrive\Escritorio\images_completisimo\images\gui\jungle\bubble/9.png")
-       #self.image_number_nine = pygame.transform.scale(self.image_number_nine, (w_number, h_number))
-
-       #self.numbers_list.append(self.image_number_zero)
-       #self.numbers_list.append(self.image_number_one)
-       #self.numbers_list.append(self.image_number_two)
-       #self.numbers_list.append(self.image_number_three)
-       #self.numbers_list.append(self.image_number_four)
-       #self.numbers_list.append(self.image_number_five)
-       #self.numbers_list.append(self.image_number_six)
-       #self.numbers_list.append(self.image_number_seven)
-       #self.numbers_list.append(self.image_number_eight)
-       #self.numbers_list.append(self.image_number_nine)
         
 
         #Asigno la imagen segun la posicion del numero en el tablero f=first, s=second, t=third

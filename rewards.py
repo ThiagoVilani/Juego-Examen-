@@ -2,8 +2,8 @@ from constantes import *
 import pygame
 
 class Rewards():
-    def __init__(self, pos_x, pos_y):
-        self.image_reward = pygame.image.load(r"C:\Users\vilan\OneDrive\Escritorio\images_completisimo\images\food\banana/banana__x1_iconic_png_1354829403.png")
+    def __init__(self, pos_x, pos_y, image_path):
+        self.image_reward = pygame.image.load(r"{0}.png".format(image_path))
         self.image_reward = pygame.transform.scale(self.image_reward, (37,40))
         self.rect_reward = self.image_reward.get_rect()
         self.rect_reward.x = pos_x
@@ -77,9 +77,9 @@ class Rewards_list():
         for reward in self.rewards_list:
             reward.draw(screen)
 
-def create_rewards():
-    reward_1 = Rewards(700, 350)
-    reward_2 = Rewards(200, 100)
+def create_rewards(image_path):
+    reward_1 = Rewards(700, 350, image_path)
+    reward_2 = Rewards(200, 100, image_path)
     rewards_list = Rewards_list()
     rewards_list.rewards_list.append(reward_1)
     rewards_list.rewards_list.append(reward_2)
