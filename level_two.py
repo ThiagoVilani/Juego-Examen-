@@ -10,7 +10,7 @@ from tramps import *
 from gui_game_over import *
 import json
 
-with open(r"C:\Users\vilan\OneDrive\Escritorio\Juego-Examen-\plataformas_level_one.json") as archivo:
+with open(r"C:\Users\vilan\OneDrive\Escritorio\Juego-Examen-\level_two.json") as archivo:
         data = json.load(archivo)
         dic_plataformas = data.copy()
 plataformas = dic_plataformas["platforms_list"]

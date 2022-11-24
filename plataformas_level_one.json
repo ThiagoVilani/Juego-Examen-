@@ -3,14 +3,16 @@
 
 {
 "platforms_list":[
+    {
+        "path_platform":"C:/Users/vilan/OneDrive/Escritorio/images_completisimo/images/tileset/forest/Tiles/2.png"
+    },
     [
         9,
         {
         "x": "600",
         "y": "400",
         "w": "50",
-        "h": "50",
-        "type": "13"
+        "h": "50"
         }
         
     ], 
@@ -20,8 +22,7 @@
         "x": "470",
         "y": "220",
         "w": "50",
-        "h": "50",
-        "type": "13"
+        "h": "50"
         }
     ], 
     [
@@ -30,8 +31,7 @@
         "x": "500",
         "y": "330",
         "w": "50",
-        "h": "50",
-        "type": "13"
+        "h": "50"
         }
     ],
     [
@@ -40,8 +40,7 @@
         "x": "50",
         "y": "150",
         "w": "50",
-        "h": "50",
-        "type": "13"
+        "h": "50"
         }
     ]
     ]
