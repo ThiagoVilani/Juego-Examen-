@@ -2,10 +2,10 @@ from constantes import *
 import pygame
 
 class Pause_button():
-    def __init__(self, x, y, w, h):
-        self.surface_pause = pygame.image.load(r"C:\Users\vilan\OneDrive\Escritorio\images_completisimo\images\gui\jungle\btn/pause.png")
+    def __init__(self, path_pause_image, path_play_image, x, y, w, h):
+        self.surface_pause = pygame.image.load(r"{0}".format(path_pause_image))
         self.surface_pause = pygame.transform.scale(self.surface_pause,(w, h))
-        self.surface_play = pygame.image.load(r"C:\Users\vilan\OneDrive\Escritorio\images_completisimo\images\gui\jungle\btn/play.png")
+        self.surface_play = pygame.image.load(r"{0}".format(path_play_image))
         self.surface_play = pygame.transform.scale(self.surface_play,(w, h))
         self.surface = self.surface_pause
         self.rect = self.surface.get_rect()

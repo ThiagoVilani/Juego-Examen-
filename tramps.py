@@ -3,9 +3,9 @@ from constantes import *
 import random
 
 class Tramp():
-    def __init__(self, platform):
-        self.image = pygame.image.load(r"C:\Users\vilan\OneDrive\Escritorio\images_completisimo\images\tileset\space_ship\Tiles/spike.png")
-        self.image = pygame.transform.scale(self.image, (40,40))
+    def __init__(self, path_image, platform, height, width):
+        self.image = pygame.image.load(r"{0}".format(path_image))
+        self.image = pygame.transform.scale(self.image, (width, height))
         self.rect = self.image.get_rect()
         self.rect.x = random.randint(platform[0].rect.x, platform[-1].rect.x)
         self.rect.y = platform[0].rect.y -30
@@ -27,7 +27,7 @@ def create_tramps(platform):
     tramps_list = []
     
     tramps_list_1 = []
-    tramps_list_1.append(Tramp(platform[0]))
+    tramps_list_1.append()
     tramps_list_1.append(Tramp(platform[0]))
     
     
@@ -39,5 +39,14 @@ def create_tramps(platform):
     tramps_list.append(tramps_list_1)
     tramps_list.append(tramps_list_2)
 
+    return tramps_list
+
+def create_tramps_json(platforms_list, path_image, height, width):
+    tramps_list = []
+    for i in range(len(platforms_list)):
+        random_number = random.randint(0, 11)
+        if (random_number % 2) == 0:# and len(platforms_list[i]) > 4:   
+            tramp = Tramp(path_image, platforms_list[i], height, width)
+            tramps_list.append(tramp)
     return tramps_list
 

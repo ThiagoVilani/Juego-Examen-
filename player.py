@@ -83,14 +83,13 @@ class Player:
 
 
     def collide_tramp(self, tramp_list):
-        for list in tramp_list:
-            for tramp in list:
-                if self.collition_rect.colliderect(tramp.collition_rect_top):
-                    self.lifes = 0
-                if self.collition_rect.colliderect(tramp.collition_rect_right):
-                    self.change_x(50)
-                if self.collition_rect.colliderect(tramp.collition_rect_left):
-                    self.change_x(-50)
+        for tramp in tramp_list:
+            if self.collition_rect.colliderect(tramp.collition_rect_top):
+                self.lifes = 0
+            if self.collition_rect.colliderect(tramp.collition_rect_right):
+                self.change_x(50)
+            if self.collition_rect.colliderect(tramp.collition_rect_left):
+                self.change_x(-50)
                     
 
 

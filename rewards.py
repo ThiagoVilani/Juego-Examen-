@@ -1,19 +1,20 @@
 from constantes import *
 import pygame
+import random
 
 class Rewards():
-    def __init__(self, pos_x, pos_y, image_path):
+    def __init__(self, pos_x, pos_y, image_path, width_image, height_image, vertical_speed, float_update_rate, update_rate):
         self.image_reward = pygame.image.load(r"{0}.png".format(image_path))
-        self.image_reward = pygame.transform.scale(self.image_reward, (37,40))
+        self.image_reward = pygame.transform.scale(self.image_reward, (width_image, height_image))#37,40
         self.rect_reward = self.image_reward.get_rect()
         self.rect_reward.x = pos_x
         self.rect_reward.y = pos_y
         self.collition_rect = self.rect_reward
-        self.vertical_speed = 1
-        self.float_update_rate = 70
+        self.vertical_speed = vertical_speed #1
+        self.float_update_rate = float_update_rate #70
         self.float_update_time = 0
         self.ate = False
-        self.update_rate = 50
+        self.update_rate = update_rate #50
         self.update_time = 0
         self.direction = "up"
         self.float_limitator = 0
@@ -77,10 +78,17 @@ class Rewards_list():
         for reward in self.rewards_list:
             reward.draw(screen)
 
-def create_rewards(image_path):
-    reward_1 = Rewards(700, 350, image_path)
-    reward_2 = Rewards(200, 100, image_path)
-    rewards_list = Rewards_list()
-    rewards_list.rewards_list.append(reward_1)
-    rewards_list.rewards_list.append(reward_2)
-    return rewards_list
+
+def create_rewards_json(image_path, width_image, height_image, vertical_speed, float_update_rate, update_rate, plataform_list):
+    all_rewards = Rewards_list()
+    for i in range(len(plataform_list)):
+        random_number = random.randint(0, 11)
+        if (random_number % 2) == 0:
+            if len(plataform_list[i]) < 4:
+                reward = Rewards((plataform_list[i][random.randint(0, len(plataform_list[i])-1)].rect.x), plataform_list[i][0].rect.y - 40, image_path, width_image, height_image, vertical_speed, float_update_rate, update_rate)
+                all_rewards.rewards_list.append(reward)
+            else:
+                for a in range(2):
+                    reward = Rewards((plataform_list[i][random.randint(0, len(plataform_list[i])-1)].rect.x), plataform_list[i][0].rect.y - 40, image_path, width_image, height_image, vertical_speed, float_update_rate, update_rate)
+                    all_rewards.rewards_list.append(reward)
+    return all_rewards

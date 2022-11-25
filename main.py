@@ -42,9 +42,8 @@ while True:
             for plataforma in plataform_list:
                 for bloque in plataforma:
                     bloque.draw(screen)
-            for lista in lista_trampas:
-                for trampa in lista:
-                    trampa.draw(screen)
+            for trampa in lista_trampas:
+                trampa.draw(screen)
             game_over = enemys_list.update(player_1, delta_ms)
             enemys_list.draw(screen)
             player_1.events(delta_ms,keys)
