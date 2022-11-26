@@ -5,25 +5,27 @@ from proyectil import *
 from gui_play_screen import *
 
 class Player:
-    def __init__(self,x,y,speed_walk,speed_run,gravity,jump_power,frame_rate_ms,move_rate_ms,jump_height,p_scale=1,interval_time_jump=100) -> None:
+    #def __init__(self,x,y,speed_walk,speed_run,gravity,jump_power,frame_rate_ms,move_rate_ms,jump_height, path_image_stay, path_image_jump, path_image_walk, path_image_shoot, path_image_knife, path_image_death, p_scale=1,interval_time_jump=100) -> None:
+    def __init__(self, dic_player, dic_life_bar, dic_score_table) -> None:
+
         '''
         self.walk_r = Auxiliar.getSurfaceFromSpriteSheet("images/caracters/stink/walk.png",15,1,scale=p_scale)[:12]
         '''
 
-        self.stay_r = Auxiliar.getSurfaceFromSeparateFiles(r"C:\Users\vilan\OneDrive\Escritorio/images_completisimo/images/caracters/players/cowgirl/Idle ({0}).png",10,flip=False,scale=p_scale)
-        self.stay_l = Auxiliar.getSurfaceFromSeparateFiles(r"C:\Users\vilan\OneDrive\Escritorio/images_completisimo/images/caracters/players/cowgirl/Idle ({0}).png",10,flip=True,scale=p_scale)
-        self.jump_r = Auxiliar.getSurfaceFromSeparateFiles(r"C:\Users\vilan\OneDrive\Escritorio/images_completisimo/images/caracters/players/cowgirl/Jump ({0}).png",10,flip=False,scale=p_scale)
-        self.jump_l = Auxiliar.getSurfaceFromSeparateFiles(r"C:\Users\vilan\OneDrive\Escritorio/images_completisimo/images/caracters/players/cowgirl/Jump ({0}).png",10,flip=True,scale=p_scale)
-        self.walk_r = Auxiliar.getSurfaceFromSeparateFiles(r"C:\Users\vilan\OneDrive\Escritorio/images_completisimo/images/caracters/players/cowgirl/Run ({0}).png",8,flip=False,scale=p_scale)
-        self.walk_l = Auxiliar.getSurfaceFromSeparateFiles(r"C:\Users\vilan\OneDrive\Escritorio/images_completisimo/images/caracters/players/cowgirl/Run ({0}).png",8,flip=True,scale=p_scale)
-        self.shoot_r = Auxiliar.getSurfaceFromSeparateFiles(r"C:\Users\vilan\OneDrive\Escritorio/images_completisimo/images/caracters/players/cowgirl/Shoot ({0}).png",3,flip=False,scale=p_scale,repeat_frame=2)
-        self.shoot_l = Auxiliar.getSurfaceFromSeparateFiles(r"C:\Users\vilan\OneDrive\Escritorio/images_completisimo/images/caracters/players/cowgirl/Shoot ({0}).png",3,flip=True,scale=p_scale,repeat_frame=2)
-        self.knife_r = Auxiliar.getSurfaceFromSeparateFiles(r"C:\Users\vilan\OneDrive\Escritorio/images_completisimo/images/caracters/players/cowgirl/Melee ({0}).png",7,flip=False,scale=p_scale,repeat_frame=1)
-        self.knife_l = Auxiliar.getSurfaceFromSeparateFiles(r"C:\Users\vilan\OneDrive\Escritorio/images_completisimo/images/caracters/players/cowgirl/Melee ({0}).png",7,flip=True,scale=p_scale,repeat_frame=1)
-        self.death_l = Auxiliar.getSurfaceFromSeparateFiles(r"C:\Users\vilan\OneDrive\Escritorio/images_completisimo/images/caracters/players/cowgirl/Dead ({0}).png",10,flip=True,scale=p_scale)
-        self.death_r = Auxiliar.getSurfaceFromSeparateFiles(r"C:\Users\vilan\OneDrive\Escritorio/images_completisimo/images/caracters/players/cowgirl/Dead ({0}).png",10,flip=False,scale=p_scale)
+        self.stay_r = Auxiliar.getSurfaceFromSeparateFiles(r"{0}".format(dic_player["animations_frames"]["stay"]["path_image_stay"]), dic_player["animations_frames"]["stay"]["quantity"], flip=False, scale=dic_player["settings"]["p_scale"])
+        self.stay_l = Auxiliar.getSurfaceFromSeparateFiles(r"{0}".format(dic_player["animations_frames"]["stay"]["path_image_stay"]), dic_player["animations_frames"]["stay"]["quantity"], flip=True, scale=dic_player["settings"]["p_scale"])
+        self.jump_r = Auxiliar.getSurfaceFromSeparateFiles(r"{0}".format(dic_player["animations_frames"]["jump"]["path_image_jump"]), dic_player["animations_frames"]["jump"]["quantity"], flip=False, scale=dic_player["settings"]["p_scale"])
+        self.jump_l = Auxiliar.getSurfaceFromSeparateFiles(r"{0}".format(dic_player["animations_frames"]["jump"]["path_image_jump"]), dic_player["animations_frames"]["jump"]["quantity"], flip=True, scale=dic_player["settings"]["p_scale"])
+        self.walk_r = Auxiliar.getSurfaceFromSeparateFiles(r"{0}".format(dic_player["animations_frames"]["walk"]["path_image_walk"]), dic_player["animations_frames"]["walk"]["quantity"], flip=False, scale=dic_player["settings"]["p_scale"])
+        self.walk_l = Auxiliar.getSurfaceFromSeparateFiles(r"{0}".format(dic_player["animations_frames"]["walk"]["path_image_walk"]), dic_player["animations_frames"]["walk"]["quantity"], flip=True, scale=dic_player["settings"]["p_scale"])
+        self.shoot_r = Auxiliar.getSurfaceFromSeparateFiles(r"{0}".format(dic_player["animations_frames"]["shoot"]["path_image_shoot"]), dic_player["animations_frames"]["shoot"]["quantity"], flip=False, scale=dic_player["settings"]["p_scale"], repeat_frame=2)
+        self.shoot_l = Auxiliar.getSurfaceFromSeparateFiles(r"{0}".format(dic_player["animations_frames"]["shoot"]["path_image_shoot"]), dic_player["animations_frames"]["shoot"]["quantity"], flip=True, scale=dic_player["settings"]["p_scale"], repeat_frame=2)
+        self.knife_r = Auxiliar.getSurfaceFromSeparateFiles(r"{0}".format(dic_player["animations_frames"]["knife"]["path_image_knife"]), dic_player["animations_frames"]["knife"]["quantity"], flip=False, scale=dic_player["settings"]["p_scale"], repeat_frame=1)
+        self.knife_l = Auxiliar.getSurfaceFromSeparateFiles(r"{0}".format(dic_player["animations_frames"]["knife"]["path_image_knife"]), dic_player["animations_frames"]["knife"]["quantity"], flip=True, scale=dic_player["settings"]["p_scale"], repeat_frame=1)
+        self.death_l = Auxiliar.getSurfaceFromSeparateFiles(r"{0}".format(dic_player["animations_frames"]["death"]["path_image_death"]), dic_player["animations_frames"]["death"]["quantity"], flip=True, scale=dic_player["settings"]["p_scale"])
+        self.death_r = Auxiliar.getSurfaceFromSeparateFiles(r"{0}".format(dic_player["animations_frames"]["death"]["path_image_death"]), dic_player["animations_frames"]["death"]["quantity"], flip=False, scale=dic_player["settings"]["p_scale"])
         
-        self.score_table = Score(200, 10, 300, 60, 20, 30)
+        self.score_table = Score(dic_score_table)
         self.score = 0
         self.fruit_ate = False
         self.enemy_collide_left = False
@@ -32,32 +34,31 @@ class Player:
         self.tramp_collide_left = False
         self.tramp_collide_right = False
         self.tramp_collide_top = False
-        self.lifes = 5
+        self.lifes = dic_player["settings"]["lifes"]
         self.life_bar = Life_bar()
-        self.life_bar.create_hearts(self.lifes, 10, 20, 30, 30)
+        self.life_bar.create_hearts(self.lifes, dic_life_bar)
         self.magazine = Magazine()
         self.high_time = 0
         self.flag_high = False
         self.death = False
         self.frame = 0
-        self.lifes = 5
         self.score = 0
         self.move_x = 0
         self.move_y = 0
-        self.speed_walk =  speed_walk
-        self.speed_run =  speed_run
-        self.gravity = gravity
-        self.jump_power = jump_power
+        self.speed_walk =  dic_player["settings"]["speed_walk"]
+        self.speed_run =  dic_player["settings"]["speed_run"]
+        self.gravity = dic_player["settings"]["gravity"]
+        self.jump_power = dic_player["settings"]["jump_power"]
         self.animation = self.stay_r
         self.direction = DIRECTION_R
         self.image = self.animation[self.frame]
         self.rect = self.image.get_rect()
-        self.rect.x = x
-        self.rect.y = y
-        self.collition_rect = pygame.Rect(x+self.rect.width/3,y,self.rect.width/3,self.rect.height)
+        self.rect.x = dic_player["settings"]["pos_x"]
+        self.rect.y = dic_player["settings"]["pos_y"]
+        self.collition_rect = pygame.Rect(dic_player["settings"]["pos_x"]+self.rect.width/3, dic_player["settings"]["pos_y"], self.rect.width/3, self.rect.height)
         self.ground_collition_rect = pygame.Rect(self.collition_rect)
         self.ground_collition_rect.height = GROUND_COLLIDE_H
-        self.ground_collition_rect.y = y + self.rect.height - GROUND_COLLIDE_H
+        self.ground_collition_rect.y = dic_player["settings"]["pos_y"] + self.rect.height - GROUND_COLLIDE_H
         
 
         self.is_jump = False
@@ -70,15 +71,15 @@ class Player:
         self.update_rate = 50
         self.total_time = 0
         self.tiempo_transcurrido_animation = 0
-        self.frame_rate_ms = frame_rate_ms 
+        self.frame_rate_ms = dic_player["settings"]["frame_rate_ms"]
         self.tiempo_transcurrido_move = 0
-        self.move_rate_ms = move_rate_ms
+        self.move_rate_ms = dic_player["settings"]["move_rate_ms"]
         self.y_start_jump = 0
-        self.jump_height = jump_height
+        self.jump_height = dic_player["settings"]["jump_height"]
 
         self.tiempo_transcurrido = 0
         self.tiempo_last_jump = 0 # en base al tiempo transcurrido general
-        self.interval_time_jump = interval_time_jump
+        self.interval_time_jump = dic_player["settings"]["interval_time_jump"]
 
 
 

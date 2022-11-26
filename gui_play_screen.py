@@ -28,15 +28,15 @@ class Pause_button():
 #!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 class Score():
-    def __init__(self, x_back, y_back, w_back, h_back, w_number, h_number):
-        self.image_back = pygame.image.load(r"C:\Users\vilan\OneDrive\Escritorio\images_completisimo\images\gui\jungle/bubble/table.png")
-        self.image_back = pygame.transform.scale(self.image_back, (w_back, h_back))
+    def __init__(self, dic_score_table):
+        self.image_back = pygame.image.load(r"{0}".format(dic_score_table["path_image_back"]))
+        self.image_back = pygame.transform.scale(self.image_back, (dic_score_table["w_back"], dic_score_table["h_back"]))
         self.back_rect = self.image_back.get_rect()
-        self.back_rect.x = x_back
-        self.back_rect.y = y_back
+        self.back_rect.x = dic_score_table["x_back"]
+        self.back_rect.y = dic_score_table["y_back"]
         
-        self.image_score = pygame.image.load(r"C:\Users\vilan\OneDrive\Escritorio\images/score.png")
-        self.image_score = pygame.transform.scale(self.image_score, (130, 90))
+        self.image_score = pygame.image.load(r"{0}".format(dic_score_table["path_image_score"]))
+        self.image_score = pygame.transform.scale(self.image_score, (dic_score_table["w_score"], dic_score_table["h_score"]))
         self.score_rect = self.image_score.get_rect()
         self.score_rect.x = self.back_rect.x
         self.score_rect.y = self.back_rect.y - 10
@@ -45,8 +45,9 @@ class Score():
         
         #Cargo las imagenes de los numeros
         for i in range(9):
-            number = pygame.image.load(f"C:/Users/vilan/OneDrive/Escritorio/images_completisimo/images/gui/jungle/bubble/{i}.png")
-            number = pygame.transform.scale(number, (w_number, h_number))
+            #number = pygame.image.load(f"{0}".format(dic_score_table["numbers"]["path_image_numbers"]))
+            number = pygame.image.load(r"{0}{1}.png".format(dic_score_table["numbers"]["path_image_numbers"], i))
+            number = pygame.transform.scale(number, (dic_score_table["numbers"]["w_number"], dic_score_table["numbers"]["h_number"]))
             self.numbers_list.append(number)
         
 
@@ -54,17 +55,17 @@ class Score():
         self.image_number_fpos = self.numbers_list[0]
         self.rect_fpos = self.image_number_fpos.get_rect()
         self.rect_fpos.x = (self.back_rect.x + 20) + ((self.back_rect.w/5)*4)
-        self.rect_fpos.y = 20
+        self.rect_fpos.y = self.back_rect.y
         
         self.image_number_spos = self.numbers_list[0]
         self.rect_spos = self.image_number_spos.get_rect()
         self.rect_spos.x = (self.back_rect.x + 20) + ((self.back_rect.w/5)*3)
-        self.rect_spos.y = 20
+        self.rect_spos.y = self.back_rect.y
         
         self.image_number_tpos = self.numbers_list[0]
         self.rect_tpos = self.image_number_tpos.get_rect()
         self.rect_tpos.x = (self.back_rect.x + 20) + ((self.back_rect.w/5)*2)
-        self.rect_tpos.y = 20
+        self.rect_tpos.y = self.back_rect.y
 
     def update(self, entity):
         score = str(entity.score)
@@ -78,7 +79,7 @@ class Score():
         if len(score) == 2:
             self.image_number_fpos = self.numbers_list[int(score[-1])]
             self.image_number_spos = self.numbers_list[int(score[-2])]
-            self.image_number_tpos = self.image_number_zero
+            self.image_number_tpos = self.numbers_list[0]
         if len(score) == 3:
             self.image_number_fpos = self.numbers_list[int(score[-1])]
             self.image_number_spos = self.numbers_list[int(score[-2])]
@@ -114,11 +115,11 @@ class Life_bar():
     def __init__(self):
         self.hearts_list = []
 
-    def create_hearts(self, cantidad, x, y, w, h):
-        x = x
-        for i in range(cantidad):
-            x += w
-            self.hearts_list.append(Ghost_object(x, y, w, h))
+    def create_hearts(self, quantity, dic_life_bar):
+        x = dic_life_bar["pos_x"]
+        for i in range(quantity):
+            x += dic_life_bar["width"]
+            self.hearts_list.append(Ghost_object(x, dic_life_bar["pos_y"], dic_life_bar["width"], dic_life_bar["height"]))
     
     def update(self, entity):
         if 0 < len(self.hearts_list):

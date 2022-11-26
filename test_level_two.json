@@ -4,6 +4,106 @@
 {
     "background_image_path":"C:/Users/vilan/OneDrive/Escritorio/images_completisimo/images/locations/set_bg_05/3_game_background/3_game_background.png",
     
+    "player":
+    {
+        "settings":
+        {
+            "lifes": 5,
+
+            "shoot_cooldown":500,
+
+            "update_rate": 50,
+
+            "pos_x": 0,
+
+            "pos_y": 410,
+
+            "speed_walk": 10,
+
+            "speed_run":12,
+
+            "gravity": 14,
+
+            "jump_power": 30,
+
+            "frame_rate_ms": 100,
+
+            "move_rate_ms": 50,
+
+            "jump_height": 140,
+
+            "p_scale": 0.2,
+            
+            "interval_time_jump": 300
+        },
+
+        "animations_frames":
+        {
+            "stay":
+            {
+                "path_image_stay":"C:/Users/vilan/OneDrive/Escritorio/images_completisimo/images/caracters/players/cowgirl/Idle ({0}).png",
+                "quantity":10
+            },
+            
+            "jump":
+            {
+                "path_image_jump":"C:/Users/vilan/OneDrive/Escritorio/images_completisimo/images/caracters/players/cowgirl/Jump ({0}).png",
+                "quantity":10
+            },
+
+            "walk":
+            {
+                "path_image_walk":"C:/Users/vilan/OneDrive/Escritorio/images_completisimo/images/caracters/players/cowgirl/Run ({0}).png",
+                "quantity":8
+            },
+
+            "shoot":
+            {
+                "path_image_shoot":"C:/Users/vilan/OneDrive/Escritorio/images_completisimo/images/caracters/players/cowgirl/Shoot ({0}).png",
+                "quantity":3
+            },
+
+            "knife":
+            {
+                "path_image_knife":"C:/Users/vilan/OneDrive/Escritorio/images_completisimo/images/caracters/players/cowgirl/Melee ({0}).png",
+                "quantity":7
+            },
+
+            "death":
+            {
+                "path_image_death":"C:/Users/vilan/OneDrive/Escritorio/images_completisimo/images/caracters/players/cowgirl/Dead ({0}).png",
+                "quantity":10
+            }
+        }
+    },
+
+    "life_bar":
+    {
+        "pos_x": 10,
+        "pos_y": 20,
+        "width": 30,
+        "height": 30
+    },
+
+    "score_table":
+    {
+        "path_image_back":"C:/Users/vilan/OneDrive/Escritorio/images_completisimo/images/gui/jungle/bubble/table.png",
+        "x_back": 200,
+        "y_back": 10,
+        "w_back": 300,
+        "h_back": 60,
+        "path_image_score":"C:/Users/vilan/OneDrive/Escritorio/images/score.png",
+        "w_score":130,
+        "h_score":90,
+
+        "numbers":
+        {
+            "w_number": 20,
+            "h_number": 30,
+            "path_image_numbers":"C:/Users/vilan/OneDrive/Escritorio/images_completisimo/images/gui/jungle/bubble/"
+        }
+    },
+
     "pause_button":
     {
         "path_pause_icon":"C:/Users/vilan/OneDrive/Escritorio/images_completisimo/images/gui/set_gui_01/Glitch_Border/Buttons/pause.png",
