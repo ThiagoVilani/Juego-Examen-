@@ -14,8 +14,8 @@ pygame.init()
 clock = pygame.time.Clock()
 game_over = None
 
-#imagen_fondo, rewards_list, plataform_list, pause_button, lista_trampas, player_1, enemys_list = create_level_one()
-imagen_fondo, rewards_list, plataform_list, pause_button, lista_trampas, player_1, enemys_list = create_level_two()
+imagen_fondo, rewards_list, plataform_list, pause_button, lista_trampas, player_1, enemys_list = create_level_one()
+#imagen_fondo, rewards_list, plataform_list, pause_button, lista_trampas, player_1, enemys_list = create_level_two()
 
 
 while True:   

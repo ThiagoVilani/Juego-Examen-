@@ -21,6 +21,7 @@ dic_tramps = dic_level["tramps"]
 dic_player = dic_level["player"]
 dic_score_table = dic_level["score_table"]
 dic_life_bar = dic_level["life_bar"]
+dic_enemys = dic_level["enemy"]
 
 def create_level_two():
     #La ruta de la imagen del fondo tiene que venir por json
@@ -31,7 +32,7 @@ def create_level_two():
     pause_button = Pause_button(dic_button["path_pause_icon"], dic_button["path_play_icon"], int(dic_button["x"]), int(dic_button["y"]), int(dic_button["width"]), int(dic_button["height"]))
     lista_trampas = create_tramps_json(plataform_list, dic_tramps["path_image"], int(dic_tramps["height"]), int(dic_tramps["width"]))
     player_1 = Player(dic_player, dic_life_bar, dic_score_table)
-    ###########         HASTA ACA ESTA PARA ENTREGAR / SEGUIR PARA ABAJO        #############
-    
-    enemys_list = create_enemys_list(plataform_list)
+    enemys_list = create_enemys_json(plataform_list, dic_enemys)
     return imagen_fondo, rewards_list, plataform_list, pause_button, lista_trampas, player_1, enemys_list
+
+        ########### ALL PERFECT BUT hay que tocar algunos temas del enemigo #############

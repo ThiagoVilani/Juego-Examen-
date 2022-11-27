@@ -5,13 +5,16 @@ from constantes import *
 from proyectil import *
 
 class Enemy():
-    def __init__(self, x, y, platform):
+    def __init__(self, x, y, platform, dic_enemy):
         self.pos_x = x
         self.pos_y = y
-        self.walk_l = Auxiliar.getSurfaceFromSpriteSheet(r"C:\Users\vilan\OneDrive\Escritorio\images\inhabitants\dust\walk_left.png", 8, 1)
-        self.walk_r = Auxiliar.getSurfaceFromSpriteSheet(r"C:\Users\vilan\OneDrive\Escritorio\images\inhabitants\dust\walk_left.png", 8, 1, True)
+        self.walk_l = Auxiliar.getSurfaceFromSpriteSheet(r"{0}".format(dic_enemy["path_image_walk"]), dic_enemy["columns"], dic_enemy["rows"])
+        self.walk_r = Auxiliar.getSurfaceFromSpriteSheet(r"{0}".format(dic_enemy["path_image_walk"]), dic_enemy["columns"], dic_enemy["rows"], True)
+        for i in range(len(self.walk_l)):
+            self.walk_l[i] = pygame.transform.scale(self.walk_l[i], (dic_enemy["width"], dic_enemy["height"]))
+            self.walk_r[i] = pygame.transform.scale(self.walk_r[i], (dic_enemy["width"], dic_enemy["height"]))
         self.frame = 0
-        self.speed_walk = random.randint(5, 7)
+        self.speed_walk = random.randint(dic_enemy["speed_range"][0], dic_enemy["speed_range"][1])
         self.animation = self.walk_l
         self.image = self.animation[self.frame]
         self.rect = self.image.get_rect()
@@ -20,7 +23,7 @@ class Enemy():
         self.collition_rect_left = pygame.Rect(self.rect.x + 20, self.rect.y + 30, self.rect.w - 90, self.rect.h - 50)
         self.collition_rect_right = pygame.Rect(self.rect.x - 20, self.rect.y + 30, self.rect.w - 90, self.rect.h - 50)
         self.death = False
-        self.lifes = 3
+        self.lifes = dic_enemy["lifes"]
         if platform == None:
             self.right_limit = ANCHO_VENTANA - 100
             self.left_limit = ANCHO_VENTANA - 1000
@@ -31,11 +34,11 @@ class Enemy():
         self.direction = "left"
         self.magazine = Magazine()
         self.start_time = 0
-        self.start_shoot = random.randint(3000, 5000)
+        self.start_shoot = random.randint(dic_enemy["start_shoot_range"][0], dic_enemy["start_shoot_range"][1])
         self.total_time = 0
         self.shoot_time = 0
-        self.update_rate = 50
-        self.shoot_rate = random.randint(1500, 2000)
+        self.update_rate = dic_enemy["update_rate"]
+        self.shoot_rate = random.randint(dic_enemy["shoot_rate"][0], dic_enemy["shoot_rate"][0])
         
     
     def shoot(self, delta_ms):
@@ -142,3 +145,14 @@ def create_enemys_list(plataform_list):
     enemys_list.enemy_list.append(enemy_2)
     enemys_list.enemy_list.append(enemy_3)
     return enemys_list
+
+
+
+def create_enemys_json(platforms_list, dic_enemys):
+    all_enemys = Horde()
+    all_enemys.enemy_list.append(Enemy((ANCHO_VENTANA - 150), GROUND_LEVEL - dic_enemys["height"], None, dic_enemys))
+    for i in range(len(platforms_list)):
+        if len(platforms_list[i]) > 5:
+            enemy = Enemy((platforms_list[i][random.randint(0, len(platforms_list[i])-1)].rect.x), platforms_list[i][0].rect.y, platforms_list[i], dic_enemys)
+            all_enemys.enemy_list.append(enemy)
+    return all_enemys
