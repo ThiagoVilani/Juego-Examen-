@@ -97,7 +97,7 @@ class Player:
     def eating_fruits(self, delta_ms, rewards_list):
         #print(self.speed_walk)
         if self.fruit_ate and not self.flag_high:
-            self.score += 10
+            self.score += 5
             self.speed_walk += 10
             self.flag_high = True
             self.fruit_ate = False

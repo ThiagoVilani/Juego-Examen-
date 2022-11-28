@@ -45,7 +45,7 @@ def create_tramps_json(platforms_list, path_image, height, width):
     tramps_list = []
     for i in range(len(platforms_list)):
         random_number = random.randint(0, 11)
-        if (random_number % 2) == 0:# and len(platforms_list[i]) > 4:   
+        if (random_number % 2) == 0 and len(platforms_list[i])>3:# and len(platforms_list[i]) > 4:   
             tramp = Tramp(path_image, platforms_list[i], height, width)
             tramps_list.append(tramp)
     return tramps_list

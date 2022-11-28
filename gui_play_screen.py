@@ -55,17 +55,17 @@ class Score():
         self.image_number_fpos = self.numbers_list[0]
         self.rect_fpos = self.image_number_fpos.get_rect()
         self.rect_fpos.x = (self.back_rect.x + 20) + ((self.back_rect.w/5)*4)
-        self.rect_fpos.y = self.back_rect.y
+        self.rect_fpos.y = self.back_rect.y + (self.back_rect.h/3)
         
         self.image_number_spos = self.numbers_list[0]
         self.rect_spos = self.image_number_spos.get_rect()
         self.rect_spos.x = (self.back_rect.x + 20) + ((self.back_rect.w/5)*3)
-        self.rect_spos.y = self.back_rect.y
+        self.rect_spos.y = self.back_rect.y + (self.back_rect.h/3)
         
         self.image_number_tpos = self.numbers_list[0]
         self.rect_tpos = self.image_number_tpos.get_rect()
         self.rect_tpos.x = (self.back_rect.x + 20) + ((self.back_rect.w/5)*2)
-        self.rect_tpos.y = self.back_rect.y
+        self.rect_tpos.y = self.back_rect.y + (self.back_rect.h/3)
 
     def update(self, entity):
         score = str(entity.score)

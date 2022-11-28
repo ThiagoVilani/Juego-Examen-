@@ -150,9 +150,9 @@ def create_enemys_list(plataform_list):
 
 def create_enemys_json(platforms_list, dic_enemys):
     all_enemys = Horde()
-    all_enemys.enemy_list.append(Enemy((ANCHO_VENTANA - 150), GROUND_LEVEL - dic_enemys["height"], None, dic_enemys))
+    all_enemys.enemy_list.append(Enemy((ANCHO_VENTANA - 150), GROUND_LEVEL-(dic_enemys["height"])+10, None, dic_enemys))
     for i in range(len(platforms_list)):
         if len(platforms_list[i]) > 5:
-            enemy = Enemy((platforms_list[i][random.randint(0, len(platforms_list[i])-1)].rect.x), platforms_list[i][0].rect.y, platforms_list[i], dic_enemys)
+            enemy = Enemy((platforms_list[i][random.randint(0, len(platforms_list[i])-1)].rect.x), platforms_list[i][0].rect.y-(dic_enemys["width"]/2), platforms_list[i], dic_enemys)
             all_enemys.enemy_list.append(enemy)
     return all_enemys

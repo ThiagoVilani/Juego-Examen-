@@ -1,8 +1,6 @@
 
-
-
 {
-    "background_image_path":"C:/Users/vilan/OneDrive/Escritorio/images_completisimo/images/locations/set_bg_05/3_game_background/3_game_background.png",
+    "background_image_path":"C:/Users/vilan/OneDrive/Escritorio/images_completisimo/images/locations/set_bg_05/2_game_background/2_game_background.png",
     
     "player":
     {
@@ -120,8 +118,8 @@
 
     "pause_button":
     {
-        "path_pause_icon":"C:/Users/vilan/OneDrive/Escritorio/images_completisimo/images/gui/set_gui_01/Glitch_Border/Buttons/pause.png",
-        "path_play_icon":"C:/Users/vilan/OneDrive/Escritorio/images_completisimo/images/gui/set_gui_01/Glitch_Border/Buttons/play.png",
+        "path_pause_icon":"C:/Users/vilan/OneDrive/Escritorio/images_completisimo/images/gui/jungle/btn/pause.png",
+        "path_play_icon":"C:/Users/vilan/OneDrive/Escritorio/images_completisimo/images/gui/jungle/btn/play.png",
         "x":"1040",
         "y":"10",
         "width":"40",
@@ -141,9 +139,9 @@
             "path_platform":"C:/Users/vilan/OneDrive/Escritorio/images_completisimo/images/tileset/space_ship/Tiles/2.png"
         },
         [
-            4,
+            2,
             {
-                "x": "600",
+                "x": "450",
                 "y": "400",
                 "w": "50",
                 "h": "50"
@@ -151,29 +149,29 @@
             
         ], 
         [
-            2,
+            6,
             {
-                "x": "400",
-                "y": "250",
+                "x": "50",
+                "y": "380",
+                "w": "50",
+                "h": "50"
+            }
+            
+        ], 
+        [
+            6,
+            {
+                "x": "700",
+                "y": "380",
                 "w": "50",
                 "h": "50"
             }
         ],
         [
-            3,
-            {
-                "x": "250",
-                "y": "180",
-                "w": "50",
-                "h": "50"
-            }
-
-        ], 
-        [
             2,
             {
-                "x": "500",
-                "y": "330",
+                "x": "450",
+                "y": "250",
                 "w": "50",
                 "h": "50"
             }
@@ -181,8 +179,27 @@
         [
             6,
             {
-                "x":"440",
-                "y":"150",
+                "x": "50",
+                "y": "220",
+                "w": "50",
+                "h": "50"
+            }
+            
+        ], 
+        [
+            6,
+            {
+                "x": "700",
+                "y": "220",
+                "w": "50",
+                "h": "50"
+            }
+        ],
+        [
+            1,
+            {
+                "x":"475",
+                "y":"130",
                 "w":"50",
                 "h":"50"
             }

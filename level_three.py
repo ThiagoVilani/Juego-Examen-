@@ -10,7 +10,7 @@ from tramps import *
 from gui_game_over import *
 import json
 
-with open(r"C:\Users\vilan\OneDrive\Escritorio\Juego-Examen-\level_two.json") as archivo:
+with open(r"C:\Users\vilan\OneDrive\Escritorio\Juego-Examen-\level_three.json") as archivo:
         datita = json.load(archivo)
         dic_level = datita.copy()
 
@@ -23,8 +23,8 @@ dic_score_table = dic_level["score_table"]
 dic_life_bar = dic_level["life_bar"]
 dic_enemys = dic_level["enemy"]
 
-def create_level_two():
-    #La ruta de la imagen del fondo tiene que venir por json
+def create_level_three():
+#La ruta de la imagen del fondo tiene que venir por json
     imagen_fondo = pygame.image.load(r"{0}".format(dic_level["background_image_path"])).convert()
     imagen_fondo = pygame.transform.scale(imagen_fondo,(ANCHO_VENTANA,ALTO_VENTANA))
     plataform_list = create_platforms_json(plataformas)

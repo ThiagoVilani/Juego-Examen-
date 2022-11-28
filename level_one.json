@@ -1,8 +1,6 @@
 
-
-
 {
-    "background_image_path":"C:/Users/vilan/OneDrive/Escritorio/images_completisimo/images/locations/set_bg_05/3_game_background/3_game_background.png",
+    "background_image_path":"C:/Users/vilan/OneDrive/Escritorio/images_completisimo/images/locations/set_bg_05/1_game_background/1_game_background.png",
     
     "player":
     {
@@ -91,6 +89,22 @@
         "lifes": 3
     },
 
+    "main_screen":
+    {
+        "background_image":"C:/Users/vilan/OneDrive/Escritorio/images_completisimo/images/locations/location1.jpg",
+        "title":
+        {
+            "path_image":"C:/Users/vilan/OneDrive/Escritorio/images_completisimo/images/gui/Tranquility_title.png",
+            "width_title":600,
+            "height_title":150
+        },
+        "menu":
+        {
+            "path_image_table":"C:/Users/vilan/OneDrive/Escritorio/images_completisimo/images/gui/jungle/settings/bg.png",
+            "width_table":400,
+            "height_table":700
+        },
+
     "life_bar":
     {
         "pos_x": 10,
@@ -141,9 +155,9 @@
             "path_platform":"C:/Users/vilan/OneDrive/Escritorio/images_completisimo/images/tileset/space_ship/Tiles/2.png"
         },
         [
-            4,
+            3,
             {
-                "x": "600",
+                "x": "250",
                 "y": "400",
                 "w": "50",
                 "h": "50"
@@ -151,29 +165,19 @@
             
         ], 
         [
-            2,
+            1,
             {
                 "x": "400",
-                "y": "250",
+                "y": "330",
                 "w": "50",
                 "h": "50"
             }
         ],
         [
-            3,
-            {
-                "x": "250",
-                "y": "180",
-                "w": "50",
-                "h": "50"
-            }
-
-        ], 
-        [
             2,
             {
-                "x": "500",
-                "y": "330",
+                "x": "480",
+                "y": "250",
                 "w": "50",
                 "h": "50"
             }
@@ -181,7 +185,16 @@
         [
             6,
             {
-                "x":"440",
+                "x":"120",
+                "y":"150",
+                "w":"50",
+                "h":"50"
+            }
+        ],
+        [
+            7,
+            {
+                "x":"620",
                 "y":"150",
                 "w":"50",
                 "h":"50"

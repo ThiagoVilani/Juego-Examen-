@@ -6,6 +6,7 @@ from gui_play_screen import *
 from gui_game_over import *
 from level_one import *
 from level_two import *
+from level_three import *
 
 flags = DOUBLEBUF
 
@@ -14,8 +15,9 @@ pygame.init()
 clock = pygame.time.Clock()
 game_over = None
 
-imagen_fondo, rewards_list, plataform_list, pause_button, lista_trampas, player_1, enemys_list = create_level_one()
+#imagen_fondo, rewards_list, plataform_list, pause_button, lista_trampas, player_1, enemys_list = create_level_one()
 #imagen_fondo, rewards_list, plataform_list, pause_button, lista_trampas, player_1, enemys_list = create_level_two()
+imagen_fondo, rewards_list, plataform_list, pause_button, lista_trampas, player_1, enemys_list = create_level_three()
 
 
 while True:   
@@ -55,6 +57,5 @@ while True:
             if len(enemys_list.enemy_list) == 0:
                 game_over = "win"
 
-    
     #print(delta_ms)
 

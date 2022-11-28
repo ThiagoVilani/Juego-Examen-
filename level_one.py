@@ -8,8 +8,9 @@ from rewards import *
 from gui_play_screen import *
 from tramps import *
 from gui_game_over import *
+import json
 
-with open(r"C:\Users\vilan\OneDrive\Escritorio\Juego-Examen-\test_level_two.json") as archivo:
+with open(r"C:\Users\vilan\OneDrive\Escritorio\Juego-Examen-\level_one.json") as archivo:
         datita = json.load(archivo)
         dic_level = datita.copy()
 
