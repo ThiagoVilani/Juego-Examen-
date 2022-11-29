@@ -25,6 +25,48 @@ class Pause_button():
     def draw(self, screen):
         screen.blit(self.surface, self.rect)
 
+
+class Pause_screen():
+    def __init__(self, dic_pause_screen):
+        self.image_table = pygame.image.load(r"{0}".format(dic_pause_screen["table"]["path_image"]))
+        self.image_table = pygame.transform.scale(self.image_table, (dic_pause_screen["table"]["width"], dic_pause_screen["table"]["height"]))
+        self.rect_image_table = self.image_table.get_rect()
+        self.rect_image_table.x = dic_pause_screen["table"]["pos_x"]
+        self.rect_image_table.y = dic_pause_screen["table"]["pos_y"]
+
+        self.image_pause = pygame.image.load(r"{0}".format(dic_pause_screen["pause"]["path_image"]))
+        self.image_pause = pygame.transform.scale(self.image_pause, (self.rect_image_table.w - self.rect_image_table.w/4, self.rect_image_table.h/3))
+        self.rect_image_pause = self.image_pause.get_rect()
+        self.rect_image_pause.x = self.rect_image_table.x + (self.rect_image_table.x/9)
+        self.rect_image_pause.y = self.rect_image_table.y
+
+        self.image_back_menu = pygame.image.load(r"{0}".format(dic_pause_screen["back_menu"]["path_image"]))
+        self.image_back_menu = pygame.transform.scale(self.image_back_menu, (self.rect_image_table.w/4, self.rect_image_table.h/4))
+        self.rect_image_back_menu = self.image_back_menu.get_rect()
+        self.rect_image_back_menu.x = self.rect_image_table.x + (self.rect_image_table.w/5)
+        self.rect_image_back_menu.y = self.rect_image_table.y + (self.rect_image_table.h/2.5)
+
+        self.image_sound = pygame.image.load(r"{0}".format(dic_pause_screen["sound"]["path_image"]))
+        self.image_sound = pygame.transform.scale(self.image_sound, (self.rect_image_table.w/4, self.rect_image_table.h/4))
+        self.rect_image_sound = self.image_sound.get_rect()
+        self.rect_image_sound.x = self.rect_image_table.x + (self.rect_image_table.w/2)
+        self.rect_image_sound.y = self.rect_image_table.y + (self.rect_image_table.h/2.5)
+
+    
+    def update(self, mouse_pos, election, level_elected, playing, pause_button):
+        if self.rect_image_back_menu.collidepoint(mouse_pos):
+            pause_button.pause = False
+            return False, None, False
+        else:
+            return election, level_elected, playing
+
+
+    def draw(self, screen):
+        screen.blit(self.image_table, self.rect_image_table)
+        screen.blit(self.image_pause, self.rect_image_pause)
+        screen.blit(self.image_back_menu, self.rect_image_back_menu)
+        screen.blit(self.image_sound, self.rect_image_sound)
+
 #!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 class Score():
@@ -129,3 +171,5 @@ class Life_bar():
     def draw(self, screen):
         for heart in self.hearts_list:
             screen.blit(heart.surface, heart.rect)
+
+
