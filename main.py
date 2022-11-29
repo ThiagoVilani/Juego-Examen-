@@ -25,6 +25,7 @@ with open(r"C:\Users\vilan\OneDrive\Escritorio\Juego-Examen-\level_one.json") as
 
 pause_button = Pause_button(dic_button["path_pause_icon"], dic_button["path_play_icon"], int(dic_button["x"]), int(dic_button["y"]), int(dic_button["width"]), int(dic_button["height"]))
 pause_screen = Pause_screen(dic_level["pause_screen"]) 
+btm_button = Btm_button()
 ###########################
 main_screen = Main_screen(dic_level["main_screen"])
 election = False
@@ -49,7 +50,9 @@ while True:
             else:
                 print("estoy jugando")
                 election, level_elected, playing = pause_screen.update(pygame.mouse.get_pos(), election, level_elected, playing, pause_button)
-     
+            if game_over != None:
+                election, level_elected, playing, game_over = btm_button.update(pygame.mouse.get_pos(), game_over, election, level_elected, playing, pause_button)
+
     if not election:
         print("viendo main screen")
         main_screen.draw(screen)
@@ -67,10 +70,12 @@ while True:
         level_elected = None
 
     if election:
-        
         if game_over == "win" or  game_over == "lose":
             game_over_back(screen)
             game_over_sign(screen, game_over)
+            back_to_menu_sign(screen)
+            btm_button.draw(screen)
+            pygame.display.flip()
         else:
             if not pause_button.pause:
                 keys = pygame.key.get_pressed()
