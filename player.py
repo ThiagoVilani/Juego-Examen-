@@ -25,6 +25,7 @@ class Player:
         self.death_l = Auxiliar.getSurfaceFromSeparateFiles(r"{0}".format(dic_player["animations_frames"]["death"]["path_image_death"]), dic_player["animations_frames"]["death"]["quantity"], flip=True, scale=dic_player["settings"]["p_scale"])
         self.death_r = Auxiliar.getSurfaceFromSeparateFiles(r"{0}".format(dic_player["animations_frames"]["death"]["path_image_death"]), dic_player["animations_frames"]["death"]["quantity"], flip=False, scale=dic_player["settings"]["p_scale"])
         
+        self.name = None
         self.score_table = Score(dic_score_table)
         self.score = 0
         self.fruit_ate = False

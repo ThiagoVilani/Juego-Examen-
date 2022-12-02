@@ -8,6 +8,7 @@ from gui_game_over import *
 from level_one import *
 from level_two import *
 from level_three import *
+from ranking import *
 
 flags = DOUBLEBUF
 
@@ -20,9 +21,11 @@ game_over = None
 with open(r"C:\Users\vilan\OneDrive\Escritorio\Juego-Examen-\level_one.json") as archivo:
         datita = json.load(archivo)
         dic_level = datita.copy()
+
+
 ###############################
-
-
+flag_insert_data = False
+ranking_table = Ranking_table()
 pause_button = Pause_button(dic_button["path_pause_icon"], dic_button["path_play_icon"], int(dic_button["x"]), int(dic_button["y"]), int(dic_button["width"]), int(dic_button["height"]))
 pause_screen = Pause_screen(dic_level["pause_screen"]) 
 btm_button = Btm_button()
@@ -51,10 +54,9 @@ while True:
                 print("estoy jugando")
                 election, level_elected, playing = pause_screen.update(pygame.mouse.get_pos(), election, level_elected, playing, pause_button)
             if game_over != None:
-                election, level_elected, playing, game_over = btm_button.update(pygame.mouse.get_pos(), game_over, election, level_elected, playing, pause_button)
+                election, level_elected, playing, game_over, flag_insert_data = btm_button.update(pygame.mouse.get_pos(), game_over, election, level_elected, playing, pause_button, flag_insert_data)
 
-    if not election:
-        print("viendo main screen")
+    if not election: 
         main_screen.draw(screen)
         pygame.display.flip()
     if level_elected != None:
@@ -75,6 +77,11 @@ while True:
             game_over_sign(screen, game_over)
             back_to_menu_sign(screen)
             btm_button.draw(screen)
+            if not flag_insert_data:
+                insert_data("all_score", main_screen.name, player_1.score, "score")
+                flag_insert_data = True
+                ranking_table.update(read_order_desc("all_score", "score"))
+            ranking_table.draw(screen)
             pygame.display.flip()
         else:
             if not pause_button.pause:

@@ -125,6 +125,10 @@
                 "path_image_lo":"C:/Users/vilan/OneDrive/Escritorio/images_completisimo/images/gui/jungle/level_select/level_1.png",
                 "path_image_lt":"C:/Users/vilan/OneDrive/Escritorio/images_completisimo/images/gui/jungle/level_select/level_2.png",
                 "path_image_lth": "C:/Users/vilan/OneDrive/Escritorio/images_completisimo/images/gui/jungle/level_select/level_3.png"
+            },
+            "keyboard":
+            {
+                "path_image":"C:/Users/vilan/OneDrive/Escritorio/images_completisimo/images/gui/keyboard.png"
             }
         }
     },
@@ -210,47 +214,56 @@
         [
             3,
             {
-                "x": "250",
-                "y": "400",
-                "w": "50",
-                "h": "50"
+                "x": "10",
+                "y": "100",
+                "w": "9",
+                "h": "9"
             }
             
         ], 
         [
             1,
             {
-                "x": "400",
-                "y": "330",
-                "w": "50",
-                "h": "50"
+                "x": "30",
+                "y": "140",
+                "w": "9",
+                "h": "9"
+            }
+        ],
+        [
+            1,
+            {
+                "x": "40",
+                "y": "190",
+                "w": "9",
+                "h": "9"
             }
         ],
         [
             2,
             {
-                "x": "480",
-                "y": "250",
-                "w": "50",
-                "h": "50"
+                "x": "48",
+                "y": "260",
+                "w": "9",
+                "h": "9"
             }
         ],
         [
             6,
             {
-                "x":"120",
-                "y":"150",
-                "w":"50",
-                "h":"50"
+                "x": "15",
+                "y": "360",
+                "w": "9",
+                "h": "9"
             }
         ],
         [
-            7,
+            6,
             {
-                "x":"620",
-                "y":"150",
-                "w":"50",
-                "h":"50"
+                "x": "65",
+                "y": "370",
+                "w": "9",
+                "h": "9"
             }
         ]
     ],

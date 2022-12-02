@@ -9,8 +9,8 @@ class Pause_button():
         self.surface_play = pygame.transform.scale(self.surface_play,(w, h))
         self.surface = self.surface_pause
         self.rect = self.surface.get_rect()
-        self.rect.x = x
-        self.rect.y = y
+        self.rect.x = (ANCHO_VENTANA*95)/100
+        self.rect.y = (ALTO_VENTANA*2)/100
         self.pause = False
 
     def update(self, mouse_pos):
@@ -31,13 +31,13 @@ class Pause_screen():
         self.image_table = pygame.image.load(r"{0}".format(dic_pause_screen["table"]["path_image"]))
         self.image_table = pygame.transform.scale(self.image_table, (dic_pause_screen["table"]["width"], dic_pause_screen["table"]["height"]))
         self.rect_image_table = self.image_table.get_rect()
-        self.rect_image_table.x = dic_pause_screen["table"]["pos_x"]
-        self.rect_image_table.y = dic_pause_screen["table"]["pos_y"]
+        self.rect_image_table.centerx = ANCHO_VENTANA/2
+        self.rect_image_table.centery = ALTO_VENTANA/2
 
         self.image_pause = pygame.image.load(r"{0}".format(dic_pause_screen["pause"]["path_image"]))
         self.image_pause = pygame.transform.scale(self.image_pause, (self.rect_image_table.w - self.rect_image_table.w/4, self.rect_image_table.h/3))
         self.rect_image_pause = self.image_pause.get_rect()
-        self.rect_image_pause.x = self.rect_image_table.x + (self.rect_image_table.x/9)
+        self.rect_image_pause.centerx = self.rect_image_table.centerx
         self.rect_image_pause.y = self.rect_image_table.y
 
         self.image_back_menu = pygame.image.load(r"{0}".format(dic_pause_screen["back_menu"]["path_image"]))
@@ -171,5 +171,4 @@ class Life_bar():
     def draw(self, screen):
         for heart in self.hearts_list:
             screen.blit(heart.surface, heart.rect)
-
 
