@@ -130,6 +130,10 @@
             {
                 "path_image":"C:/Users/vilan/OneDrive/Escritorio/images_completisimo/images/gui/keyboard.png"
             }
+        },
+        "settings":
+        {
+            "set_wheel_path_image":"C:/Users/vilan/OneDrive/Escritorio/images_completisimo/images/gui/jungle/btn/settings.png"
         }
     },
 

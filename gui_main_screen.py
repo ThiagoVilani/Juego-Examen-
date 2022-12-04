@@ -11,10 +11,10 @@ class Main_screen():
         self.title_image = pygame.transform.scale(self.title_image, (dic_main_screen["title"]["width"], dic_main_screen["title"]["height"]))
         self.rect_title_image = self.title_image.get_rect()
         self.rect_title_image.centerx = ANCHO_VENTANA/2#dic_main_screen["title"]["pos_x"]
-        self.rect_title_image.centery = (ALTO_VENTANA*20)/100#dic_main_screen["title"]["pos_y"]
+        self.rect_title_image.centery = (ALTO_VENTANA*15)/100#dic_main_screen["title"]["pos_y"]
 
         self.table_image = pygame.image.load(r"{0}".format(dic_main_screen["menu"]["table"]["path_image"]))
-        self.table_image = pygame.transform.scale(self.table_image, (dic_main_screen["menu"]["table"]["width"], dic_main_screen["menu"]["table"]["height"]))
+        self.table_image = pygame.transform.scale(self.table_image, ((ANCHO_VENTANA*40)/100, (ANCHO_VENTANA*30)/100))
         self.rect_table_image = self.table_image.get_rect()
         self.rect_table_image.centerx = ANCHO_VENTANA/2#dic_main_screen["menu"]["table"]["pos_x"]
         self.rect_table_image.centery = ALTO_VENTANA/2#dic_main_screen["menu"]["table"]["pos_y"]
@@ -174,10 +174,93 @@ class Main_screen():
         self.rect_enter.x = self.rect_keyboard_image.x + (self.rect_keyboard_image.x*67)/100
         self.rect_enter.y = self.rect_keyboard_image.y + (self.rect_keyboard_image.y*150)/100
 
+        
+
+#SETTING
+
+        self.settings_wheel_image = pygame.image.load(r"{0}".format(dic_main_screen["settings"]["set_wheel_path_image"]))
+        self.settings_wheel_image = pygame.transform.scale(self.settings_wheel_image, ((ANCHO_VENTANA*5)/100, (ANCHO_VENTANA*5)/100))
+        self.rect_settings_wheel = self.settings_wheel_image.get_rect()
+        self.rect_settings_wheel.x = (ANCHO_VENTANA*5)/100
+        self.rect_settings_wheel.y = (ALTO_VENTANA*5)/100
+
+        self.font_FO = pygame.font.SysFont("Fugaz One", int(self.rect_table_image.h/9))
+        
+        self.resolution_txt = self.font_FO.render("Resolution:", True, (255,255,255), None )
+        self.rect_resolution_txt = self.resolution_txt.get_rect()
+        self.rect_resolution_txt.x = self.rect_table_image.x+(self.rect_table_image.w*10)/100
+        self.rect_resolution_txt.y = self.rect_table_image.y+(self.rect_table_image.h*10)/100
+
+        self.oth_sh_txt = self.font_FO.render("1100 x 600", True, (255,255,255), None )
+        self.rect_oth_sh_txt = self.oth_sh_txt.get_rect()
+        self.rect_oth_sh_txt.x = self.rect_table_image.x+(self.rect_table_image.w*50)/100
+        self.rect_oth_sh_txt.y = self.rect_table_image.y+(self.rect_table_image.h*7)/100
+
+        self.othf_eh_txt = self.font_FO.render("1500 x 800", True, (255,255,255), None )
+        self.rect_othf_eh_txt = self.othf_eh_txt.get_rect()
+        self.rect_othf_eh_txt.x = self.rect_table_image.x+(self.rect_table_image.w*50)/100
+        self.rect_othf_eh_txt.y = self.rect_table_image.y+(self.rect_table_image.h*17)/100
+
+        self.othnh_oth_txt = self.font_FO.render("1920 x 1080", True, (255,255,255), None )
+        self.rect_othnh_oth_txt = self.othnh_oth_txt.get_rect()
+        self.rect_othnh_oth_txt.x = self.rect_table_image.x+(self.rect_table_image.w*50)/100
+        self.rect_othnh_oth_txt.y = self.rect_table_image.y+(self.rect_table_image.h*27)/100
+
+        self.difficulty_txt = self.font_FO.render("Difficulty:", True, (255,255,255), None )
+        self.rect_difficulty_txt = self.difficulty_txt.get_rect()
+        self.rect_difficulty_txt.x = self.rect_table_image.x+(self.rect_table_image.w*10)/100
+        self.rect_difficulty_txt.y = self.rect_table_image.y+(self.rect_table_image.h*40)/100
+
+        self.easy_txt = self.font_FO.render("Easy", True, (255,255,255), None )
+        self.rect_easy_txt = self.easy_txt.get_rect()
+        self.rect_easy_txt.x = self.rect_table_image.x+(self.rect_table_image.w*50)/100
+        self.rect_easy_txt.y = self.rect_table_image.y+(self.rect_table_image.h*40)/100
+
+        self.medium_txt = self.font_FO.render("Medium", True, (255,255,255), None )
+        self.rect_medium_txt = self.medium_txt.get_rect()
+        self.rect_medium_txt.x = self.rect_table_image.x+(self.rect_table_image.w*50)/100
+        self.rect_medium_txt.y = self.rect_table_image.y+(self.rect_table_image.h*50)/100
+
+        self.hard_txt = self.font_FO.render("Hard", True, (255,255,255), None )
+        self.rect_hard_txt = self.hard_txt.get_rect()
+        self.rect_hard_txt.x = self.rect_table_image.x+(self.rect_table_image.w*50)/100
+        self.rect_hard_txt.y = self.rect_table_image.y+(self.rect_table_image.h*60)/100
+        
+        self.sound_txt = self.font_FO.render("Sound", True, (255,255,255), None )
+        self.rect_sound_txt = self.sound_txt.get_rect()
+        self.rect_sound_txt.x = self.rect_table_image.x+(self.rect_table_image.w*10)/100
+        self.rect_sound_txt.y = self.rect_table_image.y+(self.rect_table_image.h*70)/100
+
+        self.yes_txt = self.font_FO.render("Yes", True, (255,255,255), None )
+        self.rect_yes_txt = self.yes_txt.get_rect()
+        self.rect_yes_txt.x = self.rect_table_image.x+(self.rect_table_image.w*60)/100
+        self.rect_yes_txt.y = self.rect_table_image.y+(self.rect_table_image.h*70)/100
+
+        self.no_txt = self.font_FO.render("No", True, (255,255,255), None )
+        self.rect_no_txt = self.no_txt.get_rect()
+        self.rect_no_txt.x = self.rect_table_image.x+(self.rect_table_image.w*50)/100
+        self.rect_no_txt.y = self.rect_table_image.y+(self.rect_table_image.h*70)/100
+
+        self.restart_txt = self.font_FO.render("Restart to apply changes", True, (255,255,255), None )
+        self.rect_restart_txt = self.restart_txt.get_rect()
+        self.rect_restart_txt.x = self.rect_table_image.x+(self.rect_table_image.w*5)/100
+        self.rect_restart_txt.y = self.rect_table_image.y+(self.rect_table_image.h*80)/100
+
+
+#SETTING
+
+
         self.name = ""
         self.has_name = False
         self.font = pygame.font.Font(None, self.rect_input_space.h)
         self.text_to_impress = None
+        self.setting = False
+        self.need_to_restart = False
+
+
+        
+#/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
+#\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/
 
 
     def update(self, mouse_pos):
@@ -242,14 +325,38 @@ class Main_screen():
                 self.has_name = True
         
         if self.has_name:
-            if self.rect_l_one_image.collidepoint(mouse_pos):
-                level_elected = "one"
-            if self.rect_l_two_image.collidepoint(mouse_pos):
-                level_elected = "two"
-            if self.rect_l_three_image.collidepoint(mouse_pos):
-                level_elected = "three"
+            if self.rect_settings_wheel.collidepoint(mouse_pos):
+                if not self.setting:
+                    self.setting = True
+                else:
+                    self.setting = False
+                    self.need_to_restart = False
+                
+            if not self.setting:
+                if self.rect_l_one_image.collidepoint(mouse_pos):
+                    level_elected = "one"
+                if self.rect_l_two_image.collidepoint(mouse_pos):
+                    level_elected = "two"
+                if self.rect_l_three_image.collidepoint(mouse_pos):
+                        level_elected = "three"
+            else:
+                if self.rect_oth_sh_txt.collidepoint(mouse_pos):
+                    print("eligio 1100 x 600")
+                    self.need_to_restart = True
+                    change_resolution(1100, 600)
+                if self.rect_othf_eh_txt.collidepoint(mouse_pos):
+                    self.need_to_restart = True
+                    change_resolution(1500, 800)
+                if self.rect_othnh_oth_txt.collidepoint(mouse_pos):
+                    self.need_to_restart = True
+                    change_resolution(1920, 1080)
+
         print(self.name)
         return level_elected
+
+
+#/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
+#\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/
 
 
     def draw(self, screen):
@@ -264,13 +371,42 @@ class Main_screen():
             if self.text_to_impress != None:
                 screen.blit(self.text_to_impress, (self.rect_input_space))
         else:
-            screen.blit(self.table_image, (self.rect_table_image))
-            screen.blit(self.header_image, self.rect_header_image)
-            screen.blit(self.l_one_image, self.rect_l_one_image)
-            screen.blit(self.l_two_image, self.rect_l_two_image)
-            screen.blit(self.l_three_image, self.rect_l_three_image)
-        
+            screen.blit(self.settings_wheel_image, self.rect_settings_wheel)
+            if self.setting:
+                screen.blit(self.table_image, (self.rect_table_image))
+                screen.blit(self.resolution_txt, self.rect_resolution_txt)
+                screen.blit(self.oth_sh_txt, self.rect_oth_sh_txt)
+                screen.blit(self.othf_eh_txt, self.rect_othf_eh_txt)
+                screen.blit(self.othnh_oth_txt, self.rect_othnh_oth_txt)
+                screen.blit(self.difficulty_txt, self.rect_difficulty_txt)
+                screen.blit(self.easy_txt, self.rect_easy_txt)
+                screen.blit(self.medium_txt, self.rect_medium_txt)
+                screen.blit(self.hard_txt, self.rect_hard_txt)
+                screen.blit(self.sound_txt, self.rect_sound_txt)
+                screen.blit(self.yes_txt, self.rect_yes_txt)
+                screen.blit(self.no_txt, self.rect_no_txt)
+                if self.need_to_restart:
+                    screen.blit(self.restart_txt, self.rect_restart_txt)
+            else:
+                screen.blit(self.table_image, (self.rect_table_image))
+                screen.blit(self.header_image, self.rect_header_image)
+                screen.blit(self.l_one_image, self.rect_l_one_image)
+                screen.blit(self.l_two_image, self.rect_l_two_image)
+                screen.blit(self.l_three_image, self.rect_l_three_image)
+                
+               
         
 
 
+
+def change_resolution(ancho_ventana, alto_ventana):
+    with open(r"C:\Users\vilan\OneDrive\Escritorio\Juego-Examen-\settings.json") as file:
+        data = json.load(file)
+        dic_settings = data.copy()
+
+    dic_settings["ancho ventana"] = ancho_ventana
+    dic_settings["alto ventana"] = alto_ventana
+
+    with open(r"C:\Users\vilan\OneDrive\Escritorio\Juego-Examen-\settings.json", "w") as file:
+        json.dump(dic_settings, file)
 
