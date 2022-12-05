@@ -50,10 +50,11 @@ class Magazine():
         projectile = Projectile(entity)
         self.list_projectiles.append(projectile)
     
-    def update(self, player):
+    def update(self, player, sound):
         for i in range(len(self.list_projectiles)):
             self.list_projectiles[i].update()
             if self.list_projectiles[i].rect_projectile.colliderect(player.collition_rect):
+                sound.play_stop("impact", None)
                 self.projectile_to_pop = i
                 print("COLISION")
                 player.lifes -= 1

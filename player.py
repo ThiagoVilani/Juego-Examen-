@@ -6,7 +6,7 @@ from gui_play_screen import *
 
 class Player:
     #def __init__(self,x,y,speed_walk,speed_run,gravity,jump_power,frame_rate_ms,move_rate_ms,jump_height, path_image_stay, path_image_jump, path_image_walk, path_image_shoot, path_image_knife, path_image_death, p_scale=1,interval_time_jump=100) -> None:
-    def __init__(self, dic_player, dic_life_bar, dic_score_table) -> None:
+    def __init__(self, dic_player, dic_life_bar, dic_score_table, difficulty) -> None:
 
         '''
         self.walk_r = Auxiliar.getSurfaceFromSpriteSheet("images/caracters/stink/walk.png",15,1,scale=p_scale)[:12]
@@ -35,7 +35,7 @@ class Player:
         self.tramp_collide_left = False
         self.tramp_collide_right = False
         self.tramp_collide_top = False
-        self.lifes = dic_player["settings"]["lifes"]
+        self.lifes = dic_player["settings"]["difficulty"][difficulty]["lifes"]
         self.life_bar = Life_bar()
         self.life_bar.create_hearts(self.lifes, dic_life_bar)
         self.magazine = Magazine()
@@ -135,9 +135,10 @@ class Player:
                 else:
                     self.animation = self.shoot_l  
     
-    def fire(self):
+    def fire(self, sound):
         print("dispara")
-        self.magazine.creating_projectiles(self)      
+        self.magazine.creating_projectiles(self)
+        sound.play_stop("shoot", None)
 
     def knife(self,on_off = True):
         self.is_knife = on_off
@@ -240,7 +241,7 @@ class Player:
             self.enemy_collide_right = False
         
 
-    def update(self,delta_ms,plataform_list, enemys_list, rewards_list, tramp_list):
+    def update(self,delta_ms,plataform_list, enemys_list, rewards_list, tramp_list, sound):
         self.total_time += delta_ms
         self.do_movement(delta_ms,plataform_list)
         self.do_animation(delta_ms)
@@ -249,7 +250,7 @@ class Player:
             self.enemy_push_me()
             for enemy in enemys_list:
                 self.total_time = 0
-                self.magazine.update(enemy)
+                self.magazine.update(enemy, sound)
 
             self.eating_fruits(delta_ms, rewards_list)
             self.collide_tramp(tramp_list)
@@ -279,7 +280,7 @@ class Player:
         self.score_table.draw(screen)
 
 
-    def events(self,delta_ms,keys):
+    def events(self,delta_ms,keys, sound):
         self.tiempo_transcurrido += delta_ms
 
         if(keys[pygame.K_LEFT] and not keys[pygame.K_RIGHT]):
@@ -308,7 +309,7 @@ class Player:
             self.time_shoot_cooldown += delta_ms
             self.shoot()   
             if self.shoot_cooldown < self.time_shoot_cooldown:
-                self.fire()
+                self.fire(sound)
                 self.time_shoot_cooldown = 0
                  
         if(keys[pygame.K_a] and not keys[pygame.K_s]):

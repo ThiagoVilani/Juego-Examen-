@@ -53,12 +53,23 @@ class Pause_screen():
         self.rect_image_sound.y = self.rect_image_table.y + (self.rect_image_table.h/2.5)
 
     
-    def update(self, mouse_pos, election, level_elected, playing, pause_button):
+    def update(self, mouse_pos, election, level_elected, playing, pause_button, sound):
+        if self.rect_image_sound.collidepoint(mouse_pos):
+            if sound.sound:
+                sound.sound = False
+                sound.play_stop(None, False)
+                self.sound = False
+            else:
+                sound.sound = True
+                sound.play_stop(None, True)
+                self.sound = True
+
         if self.rect_image_back_menu.collidepoint(mouse_pos):
             pause_button.pause = False
             return False, None, False
         else:
             return election, level_elected, playing
+        
 
 
     def draw(self, screen):
@@ -171,4 +182,41 @@ class Life_bar():
     def draw(self, screen):
         for heart in self.hearts_list:
             screen.blit(heart.surface, heart.rect)
+        
+
+class Clock():
+    def __init__(self):
+        self.seconds = 60
+        self.total_time = 0
+        self.font_FO = pygame.font.SysFont("Fugaz One", int(ALTO_VENTANA/10))
+        self.clock = self.font_FO.render(str(self.seconds), True, (255,255,255), None)
+        self.rect_clock = self.clock.get_rect()
+        self.rect_clock.x = (ANCHO_VENTANA*90)/100
+        self.rect_clock.y = (ALTO_VENTANA*5)/100
+        self.time_left = self.font_FO.render("Time Left:", True, (255,255,255), None)
+        self.rect_time_left = self.time_left.get_rect()
+        self.rect_time_left.x = self.rect_clock.x - (self.rect_time_left.w + (ANCHO_VENTANA*1)/100)
+        self.rect_time_left.y = self.rect_clock.y
+
+    def update(self, delta_ms, game_over, pause, game_state):
+        if game_state == True:
+            self.seconds = 60
+            self.total_time = 0
+        if delta_ms != None:
+            self.total_time += delta_ms
+            if self.total_time > 1000 and game_over == None and not pause:
+                if self.seconds > 0:
+                    self.seconds -= 1
+                    self.total_time = 0
+                    self.clock = self.font_FO.render(str(self.seconds), True, (255,255,255), None)
+                if self.seconds == 0:
+                    self.total_time = 0
+                    self.seconds = 60
+                    return "lose"
+            
+        return game_over
+
+    def draw(self, screen):
+        screen.blit(self.clock, self.rect_clock)
+        screen.blit(self.time_left, self.rect_time_left)
 

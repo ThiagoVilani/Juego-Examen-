@@ -36,7 +36,7 @@ class Rewards():
             self.float_limitator += self.vertical_speed
 
 
-    def update(self, delta_ms, entity):
+    def update(self, delta_ms, entity, sound):
         self.update_time += delta_ms
         self.float_update_time += delta_ms
         if self.update_time > self.update_rate:
@@ -44,6 +44,7 @@ class Rewards():
             if self.rect_reward.colliderect(entity.rect):
                 self.ate = True   
                 entity.fruit_ate = True
+                sound.play_stop("eat", None)
                 print("BANANA comida")         
 
             #Movimiento 
@@ -64,9 +65,9 @@ class Rewards_list():
         self.rewards_list = []
         self.reward_to_pop = -1
 
-    def update(self, delta_ms, entity):
+    def update(self, delta_ms, entity, sound):
         for i in range(len(self.rewards_list)):
-            self.rewards_list[i].update(delta_ms, entity)
+            self.rewards_list[i].update(delta_ms, entity, sound)
             if self.rewards_list[i].ate == True:
                 self.reward_to_pop = i
         if self.reward_to_pop != -1:
