@@ -1,9 +1,17 @@
 from constantes import *
 import pygame
+import sys
 
 
 class Main_screen():
     def __init__(self, dic_main_screen):
+#QUIT
+        self.quit_image = pygame.image.load(r"{0}".format(dic_main_screen["quit_image"]))
+        self.quit_image = pygame.transform.scale(self.quit_image, ((ANCHO_VENTANA*5)/100, (ANCHO_VENTANA*5)/100))
+        self.rect_quit_image = self.quit_image.get_rect()
+        self.rect_quit_image.centerx = (ANCHO_VENTANA*95)/100
+        self.rect_quit_image.y = (ALTO_VENTANA*2)/100       
+#QUIT
 #IMAGEN y TITULO
         self.background_image = pygame.image.load(r"{0}".format(dic_main_screen["background_image"]))
         self.background_image = pygame.transform.scale(self.background_image, (ANCHO_VENTANA, ALTO_VENTANA))
@@ -186,8 +194,8 @@ class Main_screen():
         self.settings_wheel_image = pygame.image.load(r"{0}".format(dic_main_screen["settings"]["set_wheel_path_image"]))
         self.settings_wheel_image = pygame.transform.scale(self.settings_wheel_image, ((ANCHO_VENTANA*5)/100, (ANCHO_VENTANA*5)/100))
         self.rect_settings_wheel = self.settings_wheel_image.get_rect()
-        self.rect_settings_wheel.x = (ANCHO_VENTANA*5)/100
-        self.rect_settings_wheel.y = (ALTO_VENTANA*5)/100
+        self.rect_settings_wheel.centerx = (ANCHO_VENTANA*5)/100
+        self.rect_settings_wheel.y = (ALTO_VENTANA*2)/100    
         
         self.font_FO = pygame.font.SysFont("Fugaz One", int(self.rect_table_image.h/9))
 
@@ -275,6 +283,9 @@ class Main_screen():
 
     def update(self, mouse_pos, sound):
         level_elected = None
+        if self.rect_quit_image.collidepoint(mouse_pos):
+            pygame.quit()
+            sys.exit()
         #ESTAMOS EN EL TECLADO
         if len(self.name) < 3:
             if not self.has_name:
@@ -392,6 +403,7 @@ class Main_screen():
         
         screen.blit(self.background_image, (0,0))
         screen.blit(self.title_image, (self.rect_title_image))
+        screen.blit(self.quit_image, self.rect_quit_image)
         if not self.has_name:
             screen.blit(self.keyboard_image, self.rect_keyboard_image)
             pygame.draw.rect(screen, (0, 0, 0), self.rect_input_space)

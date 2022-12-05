@@ -1,0 +1,105 @@
+{
+    "game_settings":
+    {
+        "main_screen":
+        {
+            "background_image":"C:/Users/vilan/OneDrive/Escritorio/images_completisimo/images/locations/location1.jpg",
+            
+            "quit_image":"C:/Users/vilan/OneDrive/Escritorio/images_completisimo/images/gui/jungle/btn/close.png",
+
+            "title":
+            {
+                "path_image":"C:/Users/vilan/OneDrive/Escritorio/images_completisimo/images/gui/Tranquility_title.png",
+                "width":650,
+                "height":150,
+                "pos_x":250,
+                "pos_y":10
+            },
+            "menu":
+            {
+                "table":
+                {
+                    "path_image":"C:/Users/vilan/OneDrive/Escritorio/images_completisimo/images/gui/jungle/settings/bg.png",
+                    "width":500,
+                    "height":350,
+                    "pos_x":300,
+                    "pos_y":200
+                },
+
+                "header":
+                {
+                    "path_image":"C:/Users/vilan/OneDrive/Escritorio/images_completisimo/images/gui/jungle/level_select/header.png",
+                    "width":500,
+                    "height":400,
+                    "pos_x":300,
+                    "pos_y":200
+                },
+
+                "levels_buttons":
+                {
+                    "path_image_lo":"C:/Users/vilan/OneDrive/Escritorio/images_completisimo/images/gui/jungle/level_select/level_1.png",
+                    "path_image_lt":"C:/Users/vilan/OneDrive/Escritorio/images_completisimo/images/gui/jungle/level_select/level_2.png",
+                    "path_image_lth": "C:/Users/vilan/OneDrive/Escritorio/images_completisimo/images/gui/jungle/level_select/level_3.png"
+                },
+                "keyboard":
+                {
+                    "path_image":"C:/Users/vilan/OneDrive/Escritorio/images_completisimo/images/gui/keyboard.png"
+                }
+            },
+            "settings":
+            {
+                "set_wheel_path_image":"C:/Users/vilan/OneDrive/Escritorio/images_completisimo/images/gui/jungle/btn/settings.png",
+                "set_table_image":"C:/Users/vilan/OneDrive/Escritorio/images_completisimo/images/gui/jungle/settings/bg.png"
+            }
+        },
+        "sounds":
+        {
+            "eat_path":"C:/Users/vilan/OneDrive/Escritorio/images_completisimo/images/sounds/eat.wav",
+            "shoot_path":"C:/Users/vilan/OneDrive/Escritorio/images_completisimo/images/sounds/shoot.mp3",
+            "music_path":"C:/Users/vilan/OneDrive/Escritorio/images_completisimo/images/sounds/african_music.wav",
+            "shoot_enemy":"C:/Users/vilan/OneDrive/Escritorio/images_completisimo/images/sounds/shoot_enemy.mp3",
+            "impact":"C:/Users/vilan/OneDrive/Escritorio/images_completisimo/images/sounds/impact_1.mp3",
+            "click":"C:/Users/vilan/OneDrive/Escritorio/images_completisimo/images/sounds/click.mp3",
+            "hit_dirt":"C:/Users/vilan/OneDrive/Escritorio/images_completisimo/images/sounds/hit_dirt.mp3",
+            "enemy_death":"C:/Users/vilan/OneDrive/Escritorio/images_completisimo/images/sounds/enemy_death.mp3"
+        },
+        "pause_screen":
+        {
+            "table":
+            {
+                "path_image":"C:/Users/vilan/OneDrive/Escritorio/images_completisimo/images/gui/jungle/pause/table.png",
+                "height":300,
+                "width":300,
+                "pos_x":400,
+                "pos_y":200
+            },
+
+            "pause":
+            {
+                "path_image":"C:/Users/vilan/OneDrive/Escritorio/images_completisimo/images/gui/jungle/pause/header.png"
+            },
+
+            "back_menu":
+            {
+                "path_image":"C:/Users/vilan/OneDrive/Escritorio/images_completisimo/images/gui/jungle/btn/menu.png"
+            },
+
+            "sound":
+            {
+                "path_image":"C:/Users/vilan/OneDrive/Escritorio/images_completisimo/images/gui/jungle/btn/music.png"
+            }
+            
+            
+        },
+
+        "pause_button":
+        {
+            "path_pause_icon":"C:/Users/vilan/OneDrive/Escritorio/images_completisimo/images/gui/jungle/btn/pause.png",
+            "path_play_icon":"C:/Users/vilan/OneDrive/Escritorio/images_completisimo/images/gui/jungle/btn/play.png",
+            "x":"1040",
+            "y":"10",
+            "width":"40",
+            "height":"40"
+        }
+    }
+}

@@ -262,9 +262,9 @@
 
     "rewards":
     {
-        "image_path":"C:/Users/vilan/OneDrive/Escritorio/images_completisimo/images/food/apple/apple__x1_iconic_png_1354829396",
-        "width":"37",
-        "height":"40",
+        "image_path":"C:/Users/vilan/OneDrive/Escritorio/images_completisimo/images/food/beer/beer",
+        "width":"33",
+        "height":"45",
         "vertical_speed":"1",
         "float_update_rate":"70",
         "update_rate":"50"

@@ -178,7 +178,7 @@
             4,
             {
                 "x": "10",
-                "y": "100",
+                "y": "130",
                 "w": "9",
                 "h": "9"
             }
@@ -232,7 +232,7 @@
 
     "rewards":
     {
-        "image_path":"C:/Users/vilan/OneDrive/Escritorio/images_completisimo/images/food/apple/apple__x1_iconic_png_1354829396",
+        "image_path":"C:/Users/vilan/OneDrive/Escritorio/images_completisimo/images/food/banana/banana",
         "width":"37",
         "height":"40",
         "vertical_speed":"1",

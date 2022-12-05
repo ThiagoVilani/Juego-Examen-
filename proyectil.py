@@ -22,7 +22,7 @@ class Projectile():
             self.direction = "left"
         
         self.surface = self.image_projectile
-        self.speed = 20
+        self.speed = 15
 
 
     def update(self):

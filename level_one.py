@@ -16,7 +16,7 @@ with open(r"C:\Users\vilan\OneDrive\Escritorio\Juego-Examen-\level_one.json") as
 
 dic_rewards = dic_level["rewards"]
 plataformas = dic_level["platforms_list"]
-dic_button = dic_level["pause_button"]
+#dic_button = dic_level["pause_button"]
 dic_tramps = dic_level["tramps"]
 dic_player = dic_level["player"]
 dic_score_table = dic_level["score_table"]

@@ -44,6 +44,7 @@ class Rewards():
             if self.rect_reward.colliderect(entity.rect):
                 self.ate = True   
                 entity.fruit_ate = True
+                entity.score += 5
                 sound.play_stop("eat", None)
                 print("BANANA comida")         
 

@@ -129,6 +129,8 @@ class Horde():
                 self.enemy_list[i].pos_x = ANCHO_VENTANA + 50
             if self.enemy_list[i].death == True:
                 self.enemy_to_pop = i
+                sound.play_stop("enemy_death", None)
+                print("muere enemigo")
         if self.enemy_to_pop != -1:
             self.enemy_list.pop(self.enemy_to_pop)
             self.enemy_to_pop = -1

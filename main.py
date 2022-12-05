@@ -10,34 +10,22 @@ from level_two import *
 from level_three import *
 from ranking import *
 from sounds import *
+from game_init import *
 
 flags = DOUBLEBUF
 
-screen = pygame.display.set_mode((ANCHO_VENTANA,ALTO_VENTANA), flags, 16)
 pygame.init()
 pygame.mixer.init()
 pygame.mixer.music.set_volume(0.3)
+ranking_table, pause_button, pause_screen, btm_button, main_screen, sounds, screen, clocky = game_init(flags)
 clock = pygame.time.Clock()
 game_over = None
-
-
-###############################
-with open(r"C:\Users\vilan\OneDrive\Escritorio\Juego-Examen-\level_one.json") as archivo:
-        datita = json.load(archivo)
-        dic_level = datita.copy()
 difficulty = None
 flag_insert_data = False
-ranking_table = Ranking_table()
-pause_button = Pause_button(dic_button["path_pause_icon"], dic_button["path_play_icon"], int(dic_button["x"]), int(dic_button["y"]), int(dic_button["width"]), int(dic_button["height"]))
-pause_screen = Pause_screen(dic_level["pause_screen"]) 
-btm_button = Btm_button()
-clocky = Clock()
-main_screen = Main_screen(dic_level["main_screen"])
 election = False
 level_elected = None
 playing = False
-###########################
-sounds = Sounds(dic_level["sounds"])
+###############################
 sounds.music.play(-1)
 
 
@@ -48,6 +36,7 @@ while True:
             pygame.quit()
             sys.exit()
         if event.type == pygame.MOUSEBUTTONDOWN:
+            sounds.play_stop("click", None)
             pause_button.update(pygame.mouse.get_pos())
             if not playing:
                 print("no estaba jugando")

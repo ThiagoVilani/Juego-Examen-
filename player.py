@@ -25,6 +25,7 @@ class Player:
         self.death_l = Auxiliar.getSurfaceFromSeparateFiles(r"{0}".format(dic_player["animations_frames"]["death"]["path_image_death"]), dic_player["animations_frames"]["death"]["quantity"], flip=True, scale=dic_player["settings"]["p_scale"])
         self.death_r = Auxiliar.getSurfaceFromSeparateFiles(r"{0}".format(dic_player["animations_frames"]["death"]["path_image_death"]), dic_player["animations_frames"]["death"]["quantity"], flip=False, scale=dic_player["settings"]["p_scale"])
         
+        self.flag_sound_dirt = False
         self.name = None
         self.score_table = Score(dic_score_table)
         self.score = 0
@@ -98,7 +99,6 @@ class Player:
     def eating_fruits(self, delta_ms, rewards_list):
         #print(self.speed_walk)
         if self.fruit_ate and not self.flag_high:
-            self.score += 5
             self.speed_walk += 10
             self.flag_high = True
             self.fruit_ate = False
@@ -214,7 +214,7 @@ class Player:
     def is_on_plataform(self,plataform_list):
         retorno = False
         if(self.ground_collition_rect.bottom >= GROUND_LEVEL):
-            retorno = True     
+            retorno = True  
         else:
             for plataforma in  plataform_list:
                 for bloque in plataforma:
@@ -257,7 +257,7 @@ class Player:
             self.life_bar.update(self)
             self.score_table.update(self)
 
-            print(self.score)
+
 
             if self.lifes == 0:
                 self.death = True
