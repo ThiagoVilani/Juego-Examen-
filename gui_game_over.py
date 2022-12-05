@@ -89,17 +89,17 @@ class Ranking_table():
         #NAMES
         self.f_pos_name = font_FO.render("", True, (0,0,255), None)
         self.rect_f_pos_name = self.f_pos_name.get_rect()
-        self.rect_f_pos_name.x = self.rect_table_image.w-(self.rect_table_image.w*35)/100
+        self.rect_f_pos_name.x = self.rect_table_image.w-(self.rect_table_image.w*30)/100
         self.rect_f_pos_name.y = self.rect_table_image.h-(self.rect_table_image.h*60)/100
 
         self.s_pos_name = font_FO.render("", True, (0,0,255), None)
         self.rect_s_pos_name = self.s_pos_name.get_rect()
-        self.rect_s_pos_name.x = self.rect_table_image.w-(self.rect_table_image.w*35)/100
+        self.rect_s_pos_name.x = self.rect_table_image.w-(self.rect_table_image.w*30)/100
         self.rect_s_pos_name.y = self.rect_table_image.h-(self.rect_table_image.h*40)/100
 
         self.t_pos_name = font_FO.render("", True, (0,0,255), None)
         self.rect_t_pos_name = self.t_pos_name.get_rect()
-        self.rect_t_pos_name.x = self.rect_table_image.w-(self.rect_table_image.w*35)/100
+        self.rect_t_pos_name.x = self.rect_table_image.w-(self.rect_table_image.w*30)/100
         self.rect_t_pos_name.y = self.rect_table_image.h-(self.rect_table_image.h*20)/100
 
     

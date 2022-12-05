@@ -40,12 +40,3 @@ class Sounds():
                 self.music.stop()
                 self.sound = False
     
-        
-
-            
-
-#with open(r"C:\Users\vilan\OneDrive\Escritorio\Juego-Examen-\level_one.json") as archivo:
-#        datita = json.load(archivo)
-#        dic_level = datita.copy()
-#
-#sounds = Sounds(dic_level["sounds"])

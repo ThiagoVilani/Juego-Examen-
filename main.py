@@ -25,9 +25,8 @@ flag_insert_data = False
 election = False
 level_elected = None
 playing = False
-###############################
 sounds.music.play(-1)
-
+#
 
 while True:  
     total_time = pygame.time.get_ticks()  
@@ -48,10 +47,12 @@ while True:
             if game_over != None:
                 election, level_elected, playing, game_over, flag_insert_data = btm_button.update(pygame.mouse.get_pos(), game_over, election, level_elected, playing, pause_button, flag_insert_data)
 
+#Lo primero que veo
     if not election: 
         main_screen.draw(screen)
         pygame.display.flip()
-        
+
+#Cuando ya elegi el nivel
     if level_elected != None:
         print("ya se escogio un nivel")
         election = True
@@ -64,9 +65,11 @@ while True:
             imagen_fondo, rewards_list, plataform_list, lista_trampas, player_1, enemys_list = create_level_three(difficulty)
         level_elected = None
 
+#Ya elegi nivel y dificultad
     if election:
         delta_ms = clock.tick(FPS)
         game_over = clocky.update(delta_ms, game_over, pause_button.pause, False)
+        #Si se temrino el juego
         if game_over == "win" or  game_over == "lose":
             game_over_back(screen)
             game_over_sign(screen, game_over)
@@ -78,13 +81,13 @@ while True:
                 ranking_table.update(read_order_desc("all_score", "score"))
             ranking_table.draw(screen)
             pygame.display.flip()
+        #Si estoy jugando
         else:
+            #Si no esta en pausa
             if not pause_button.pause:
                 keys = pygame.key.get_pressed()
-                #delta_ms = clock.tick(FPS)
                 screen.blit(imagen_fondo,imagen_fondo.get_rect())
                 pause_button.draw(screen)
-                #game_over = clocky.update(delta_ms, game_over)
                 clocky.draw(screen)
                 for plataforma in plataform_list:
                     for bloque in plataforma:
@@ -101,6 +104,7 @@ while True:
                 pygame.display.flip()
                 if len(enemys_list.enemy_list) == 0:
                     game_over = "win"
+            #Si esta en pausa
             else:
                 pause_button.draw(screen)
                 pause_screen.draw(screen)

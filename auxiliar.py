@@ -1,4 +1,6 @@
 import pygame
+from constantes import *
+
 
 class Auxiliar:
     @staticmethod
@@ -10,7 +12,6 @@ class Auxiliar:
         fotograma_ancho_scaled = int(fotograma_ancho*scale)
         fotograma_alto_scaled = int(fotograma_alto*scale)
         x = 0
-        
         for fila in range(filas):
             for columna in range(0,columnas,step):
                 x = columna * fotograma_ancho

@@ -96,13 +96,12 @@ class Player:
                     
 
 
-    def eating_fruits(self, delta_ms, rewards_list):
-        #print(self.speed_walk)
+    def eating_fruits(self, delta_ms):
         if self.fruit_ate and not self.flag_high:
             self.speed_walk += 10
             self.flag_high = True
             self.fruit_ate = False
-            print("en teoria deberia estar mas rapida")
+            print("mas rapida")
         if self.flag_high:
             self.high_time += delta_ms
         if self.high_time > 3000:
@@ -245,19 +244,17 @@ class Player:
         self.total_time += delta_ms
         self.do_movement(delta_ms,plataform_list)
         self.do_animation(delta_ms)
-
+        
         if self.update_rate < self.total_time:
             self.enemy_push_me()
             for enemy in enemys_list:
                 self.total_time = 0
                 self.magazine.update(enemy, sound)
 
-            self.eating_fruits(delta_ms, rewards_list)
+            self.eating_fruits(delta_ms)
             self.collide_tramp(tramp_list)
             self.life_bar.update(self)
             self.score_table.update(self)
-
-
 
             if self.lifes == 0:
                 self.death = True
