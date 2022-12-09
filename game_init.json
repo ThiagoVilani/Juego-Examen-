@@ -37,6 +37,7 @@
 
                 "levels_buttons":
                 {
+                    "path_image_lod":"C:/Users/vilan/OneDrive/Escritorio/images_completisimo/images/gui/jungle/level_select/denied.png",
                     "path_image_lo":"C:/Users/vilan/OneDrive/Escritorio/images_completisimo/images/gui/jungle/level_select/level_1.png",
                     "path_image_lt":"C:/Users/vilan/OneDrive/Escritorio/images_completisimo/images/gui/jungle/level_select/level_2.png",
                     "path_image_lth": "C:/Users/vilan/OneDrive/Escritorio/images_completisimo/images/gui/jungle/level_select/level_3.png"

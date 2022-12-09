@@ -11,6 +11,7 @@ from level_three import *
 from ranking import *
 from sounds import *
 from game_init import *
+from level_manager import *
 
 flags = DOUBLEBUF
 
@@ -22,11 +23,12 @@ clock = pygame.time.Clock()
 game_over = None
 difficulty = None
 flag_insert_data = False
+flag_game_over = False
 election = False
 level_elected = None
 playing = False
 #sounds.music.play(-1)
-
+level_manager = Level_manager()
 
 while True:  
     total_time = pygame.time.get_ticks()  
@@ -49,20 +51,33 @@ while True:
 
 #Lo primero que veo
     if not election: 
-        main_screen.draw(screen)
+        main_screen.draw(screen, level_manager.lvl_unlocked)
         pygame.display.flip()
 
 #Cuando ya elegi el nivel
     if level_elected != None:
-        print("ya se escogio un nivel")
+        print("ya se eligio un nivel")
         election = True
         playing = True
         if level_elected == "one":
-            imagen_fondo, rewards_list, plataform_list, lista_trampas, player_1, enemys_list = create_level_one(difficulty)
+            imagen_fondo, rewards_list, plataform_list, lista_trampas, player_1, enemys_list = level_manager.create_level(difficulty, 1)
+     
         elif level_elected == "two":
-            imagen_fondo, rewards_list, plataform_list, lista_trampas, player_1, enemys_list = create_level_two(difficulty)
+            try:
+                imagen_fondo, rewards_list, plataform_list, lista_trampas, player_1, enemys_list = level_manager.create_level(difficulty, 2)
+            except:
+                print("no esta el nivel desbloqueado")
+                level_elected = None
+                election = False
+                playing = False
         else:
-            imagen_fondo, rewards_list, plataform_list, lista_trampas, player_1, enemys_list = create_level_three(difficulty)
+            try:
+                imagen_fondo, rewards_list, plataform_list, lista_trampas, player_1, enemys_list = level_manager.create_level(difficulty, 3)
+            except:
+                print("no esta el nivel desbloqueado")
+                level_elected = None
+                election = False
+                playing = False
         level_elected = None
 
 #Ya elegi nivel y dificultad
@@ -70,7 +85,15 @@ while True:
         delta_ms = clock.tick(FPS)
         game_over = clocky.update(delta_ms, game_over, pause_button.pause, False)
         #Si se temrino el juego
+        if game_over == None:
+            flag_game_over = False
         if game_over == "win" or  game_over == "lose":
+            if game_over == "win" and not flag_game_over:
+                flag_game_over = True
+                #if level_manager.lvl_unlocked < 3:
+                if level_manager.lvl_playing == level_manager.lvl_unlocked:
+                    level_manager.lvl_unlocked += 1
+                    print(level_manager.lvl_unlocked)
             game_over_back(screen)
             game_over_sign(screen, game_over)
             back_to_menu_sign(screen)

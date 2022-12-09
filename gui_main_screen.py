@@ -32,18 +32,22 @@ class Main_screen():
 #TABLA
 
 
-
+#NIVELES
         self.header_image = pygame.image.load(r"{0}".format(dic_main_screen["menu"]["header"]["path_image"]))
         self.header_image = pygame.transform.scale(self.header_image, (self.rect_table_image.w - (self.rect_table_image.w/7), self.rect_table_image.h/3))
         self.rect_header_image = self.header_image.get_rect()
         self.rect_header_image.centerx = self.rect_table_image.centerx#self.rect_table_image.x + self.rect_table_image.x/7
         self.rect_header_image.y = self.rect_table_image.y 
 
+        self.denied_image = pygame.image.load(r"{0}".format(dic_main_screen["menu"]["levels_buttons"]["path_image_lod"]))
+        self.denied_image = pygame.transform.scale(self.denied_image, (self.rect_table_image.w/5, self.rect_table_image.h/4))
+        self.rect_denied_image = self.denied_image.get_rect()
+
         self.l_one_image = pygame.image.load(r"{0}".format(dic_main_screen["menu"]["levels_buttons"]["path_image_lo"]))
         self.l_one_image = pygame.transform.scale(self.l_one_image, (self.rect_table_image.w/5, self.rect_table_image.h/4))
         self.rect_l_one_image = self.l_one_image.get_rect()
         self.rect_l_one_image.x = self.rect_table_image.x + self.rect_table_image.w/6
-        self.rect_l_one_image.y = self.rect_table_image.y + self.rect_table_image.h/3
+        self.rect_l_one_image.y = self.rect_table_image.y + self.rect_table_image.h/3  
 
         self.l_two_image = pygame.image.load(r"{0}".format(dic_main_screen["menu"]["levels_buttons"]["path_image_lt"]))
         self.l_two_image = pygame.transform.scale(self.l_two_image, (self.rect_table_image.w/5, self.rect_table_image.h/4))
@@ -56,7 +60,9 @@ class Main_screen():
         self.rect_l_three_image = self.l_three_image.get_rect()
         self.rect_l_three_image.x = self.rect_table_image.x + self.rect_table_image.w/1.6
         self.rect_l_three_image.y = self.rect_table_image.y + self.rect_table_image.h/3
-        
+#NIVELES
+
+
 #TECLADO
         self.keyboard_image = pygame.image.load(r"{0}".format(dic_main_screen["menu"]["keyboard"]["path_image"]))
         self.keyboard_image = pygame.transform.scale(self.keyboard_image, (ANCHO_VENTANA-((ANCHO_VENTANA*20)/100), ALTO_VENTANA-((ALTO_VENTANA*50)/100)))
@@ -397,7 +403,7 @@ class Main_screen():
 #\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/
 
 
-    def draw(self, screen):
+    def draw(self, screen, lvls_unlocked):
         if DEBUG:
             pygame.draw.rect(screen, (255, 255, 255), self.rect_header_image)
         
@@ -435,7 +441,11 @@ class Main_screen():
                     screen.blit(self.l_one_image, self.rect_l_one_image)
                     screen.blit(self.l_two_image, self.rect_l_two_image)
                     screen.blit(self.l_three_image, self.rect_l_three_image)
-                
+                    if lvls_unlocked<3:
+                        screen.blit(self.denied_image, self.rect_l_three_image)
+                    if lvls_unlocked<2:
+                        screen.blit(self.denied_image, self.rect_l_two_image)
+                        screen.blit(self.denied_image, self.rect_l_three_image)
                
         
 
