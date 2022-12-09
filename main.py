@@ -25,8 +25,8 @@ flag_insert_data = False
 election = False
 level_elected = None
 playing = False
-sounds.music.play(-1)
-#
+#sounds.music.play(-1)
+
 
 while True:  
     total_time = pygame.time.get_ticks()  

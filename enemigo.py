@@ -95,16 +95,17 @@ class Enemy():
             if self.lifes < 1:
                 self.death = True
 
-            if self.collition_rect_left.colliderect(player.collition_rect):
-                player.lifes -= 1
-                player.enemy_collide_left = True
-            if self.collition_rect_top.colliderect(player.collition_rect):
-                self.lifes = 0
-            if self.collition_rect_right.colliderect(player.collition_rect):
-                player.lifes -= 1
-                player.enemy_collide_right = True
-            if self.death == True:
-                player.score += 100
+            if not player.death:
+                if self.collition_rect_left.colliderect(player.collition_rect):
+                    player.lifes -= 1
+                    player.enemy_collide_left = True
+                if self.collition_rect_top.colliderect(player.collition_rect):
+                    self.lifes = 0
+                if self.collition_rect_right.colliderect(player.collition_rect):
+                    player.lifes -= 1
+                    player.enemy_collide_right = True
+                if self.death == True:
+                    player.score += 100
 
     def draw(self, screen):
         if DEBUG:

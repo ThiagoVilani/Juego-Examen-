@@ -42,6 +42,9 @@ class Player:
         self.magazine = Magazine()
         self.high_time = 0
         self.flag_high = False
+        self.flag_death_frame = False
+        self.death_animation_time = 0
+        self.death_time = False
         self.death = False
         self.frame = 0
         self.score = 0
@@ -111,16 +114,19 @@ class Player:
             print("termino el efecto")
 
     def walk(self,direction):
-        if(self.is_jump == False and self.is_fall == False):
-            if(self.direction != direction or (self.animation != self.walk_r and self.animation != self.walk_l)):
-                self.frame = 0
-                self.direction = direction
-                if(direction == DIRECTION_R):
-                    self.move_x = self.speed_walk
-                    self.animation = self.walk_r
-                else:
-                    self.move_x = -self.speed_walk
-                    self.animation = self.walk_l
+        if not self.death:
+            if(self.is_jump == False and self.is_fall == False):
+                if(self.direction != direction or (self.animation != self.walk_r and self.animation != self.walk_l)):
+                    self.frame = 0
+                    self.direction = direction
+                    if(direction == DIRECTION_R):
+                        self.move_x = self.speed_walk
+                        self.animation = self.walk_r
+                    else:
+                        self.move_x = -self.speed_walk
+                        self.animation = self.walk_l
+        else:
+            self.death_animation()
 
 
     def shoot(self,on_off = True):
@@ -149,7 +155,16 @@ class Player:
                 else:
                     self.animation = self.knife_l      
 
-    def jump(self,on_off = True):
+    def death_animation(self):
+        if self.direction == DIRECTION_R:
+            self.animation = self.death_r
+        else:
+            self.animation = self.death_l
+        if not self.flag_death_frame:
+            self.flag_death_frame = True
+            self.frame = 0
+
+    def jump(self,on_off = True, plataform_list=None):
         if(on_off and self.is_jump == False and self.is_fall == False):
             self.y_start_jump = self.rect.y
             if(self.direction == DIRECTION_R):
@@ -166,6 +181,9 @@ class Player:
             self.is_jump = False
             self.stay()
 
+        
+    
+
     def stay(self):
         if not self.death:
             if(self.is_knife or self.is_shoot):
@@ -179,6 +197,8 @@ class Player:
                 self.move_x = 0
                 self.move_y = 0
                 self.frame = 0
+        if self.death:
+            self.death_animation()
 
     def change_x(self,delta_x):
         self.rect.x += delta_x
@@ -191,7 +211,7 @@ class Player:
         self.ground_collition_rect.y += delta_y
 
     def do_movement(self,delta_ms,plataform_list):
-        if not self.death:
+        if not self.death or (self.death and self.is_fall) or (self.death and self.is_jump):
             self.tiempo_transcurrido_move += delta_ms
             if(self.tiempo_transcurrido_move >= self.move_rate_ms):
                 self.tiempo_transcurrido_move = 0
@@ -207,7 +227,7 @@ class Player:
                         self.change_y(self.gravity)
                 else:
                     if (self.is_jump): 
-                        self.jump(False)
+                        self.jump(False, plataform_list)
                     self.is_fall = False            
 
     def is_on_plataform(self,plataform_list):
@@ -223,13 +243,22 @@ class Player:
         return retorno                 
 
     def do_animation(self,delta_ms):
-        self.tiempo_transcurrido_animation += delta_ms
-        if(self.tiempo_transcurrido_animation >= self.frame_rate_ms):
-            self.tiempo_transcurrido_animation = 0
-            if(self.frame < len(self.animation) - 1):
-                self.frame += 1 
-            else: 
-                self.frame = 0
+        if not self.death or (self.death and self.is_fall and self.is_jump):
+            self.tiempo_transcurrido_animation += delta_ms
+            if(self.tiempo_transcurrido_animation >= self.frame_rate_ms):
+                self.tiempo_transcurrido_animation = 0
+                if(self.frame < len(self.animation) - 1):
+                    self.frame += 1 
+                else:
+                    self.frame = 0
+        if self.death and not self.is_fall and not self.is_jump:
+            self.death_animation_time += delta_ms
+            if self.death_animation_time > 800:
+                if(self.frame < len(self.animation) - 1):
+                    self.frame += 1 
+                else:
+                    self.death_time = True
+
     
     def enemy_push_me(self):
         if self.enemy_collide_left:
@@ -246,7 +275,8 @@ class Player:
         self.do_animation(delta_ms)
         
         if self.update_rate < self.total_time:
-            self.enemy_push_me()
+            if not self.death:
+                self.enemy_push_me()
             for enemy in enemys_list:
                 self.total_time = 0
                 self.magazine.update(enemy, sound)
@@ -256,12 +286,11 @@ class Player:
             self.life_bar.update(self)
             self.score_table.update(self)
 
-            if self.lifes == 0:
-                self.death = True
-
-            if self.death == True:
-                return "lose"
-        
+        if self.lifes < 1:
+            self.death = True
+        if self.death and self.death_time:
+            return "lose"
+       
     
     
     def draw(self,screen):
@@ -269,10 +298,11 @@ class Player:
             pygame.draw.rect(screen,color=(255,0 ,0),rect=self.collition_rect)
             pygame.draw.rect(screen,color=(255,255,0),rect=self.ground_collition_rect)
         
-        if not self.death:                    
-            self.image = self.animation[self.frame]
-            screen.blit(self.image,self.rect)
-            self.magazine.draw(screen)
+        if not self.death:
+            pass                 
+        self.image = self.animation[self.frame]
+        screen.blit(self.image,self.rect)
+        self.magazine.draw(screen)
         self.life_bar.draw(screen)
         self.score_table.draw(screen)
 

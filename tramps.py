@@ -19,7 +19,7 @@ class Tramp():
             pygame.draw.rect(screen, (200, 0, 0), self.collition_rect_top)
             pygame.draw.rect(screen, (0, 200, 0), self.collition_rect_right)
             pygame.draw.rect(screen, (0, 0, 200), self.collition_rect_left)
-        #screen.blit(self.image, self.rect)
+        screen.blit(self.image, self.rect)
 
 
 
