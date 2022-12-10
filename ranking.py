@@ -43,12 +43,34 @@ def read_order_desc(db_name, field):
         return data
 
 
+def search(db_name, name):
+    with sqlite3.connect("{0}.db".format(db_name)) as connection:
+        cursor = connection.cursor()
+        sentence = f"SELECT * FROM ranking WHERE name= '{name}'"
+        cursor.execute(sentence)
+        data = cursor.fetchall()
+        connection.commit()
+        return data
+
+
+def update(db_name, name, score):
+    with sqlite3.connect("{0}.db".format(db_name)) as connection:
+        cursor = connection.cursor()
+        sentence = f"UPDATE ranking SET score={score} WHERE name='{name}'"
+        cursor.execute(sentence)
+        connection.commit()
+
 
 
 def insert_data(db_name, name, score, field):
     create_db(db_name)
     create_table(db_name)
-    insert(db_name, name, score)
+    result_search = search(db_name, name)
+    if len(result_search) != 0:
+        if result_search[0][1] < score:
+            update(db_name, name, score)
+    else:
+        insert(db_name, name, score)
     read_order_desc(db_name, field)
 
 

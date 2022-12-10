@@ -36,9 +36,12 @@ while True:
         if event.type == pygame.QUIT:
             pygame.quit()
             sys.exit()
+        if event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_p:
+                pause_button.update(None, True)
         if event.type == pygame.MOUSEBUTTONDOWN:
             sounds.play_stop("click", None)
-            pause_button.update(pygame.mouse.get_pos())
+            pause_button.update(pygame.mouse.get_pos(), False)
             if not playing:
                 print("no estaba jugando")
                 level_elected, difficulty = main_screen.update(pygame.mouse.get_pos(), sounds)

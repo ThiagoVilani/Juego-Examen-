@@ -13,8 +13,16 @@ class Pause_button():
         self.rect.y = (ALTO_VENTANA*2)/100
         self.pause = False
 
-    def update(self, mouse_pos):
-        if self.rect.collidepoint(mouse_pos):
+    def update(self, mouse_pos, is_k_down:bool):
+        if mouse_pos != None:
+            if self.rect.collidepoint(mouse_pos):
+                if self.pause:
+                    self.surface = self.surface_pause
+                    self.pause = False
+                else:
+                    self.surface = self.surface_play
+                    self.pause = True
+        else:
             if self.pause:
                 self.surface = self.surface_pause
                 self.pause = False
