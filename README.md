@@ -16,7 +16,18 @@
   
   
 ## _Instalacion_
-Se require tener instalada la libreira de PyGAME, la misma se puede instalar mediante el modulo PIP
-En la terminal se introduce el comando PIP install pygame
+> -Se require tener instalada la libreria de ___PyGame___, la misma se puede instalar mediante el modulo PIP  
+> En la terminal se introduce el comando **pip install pygame**  
+> -Tambien se necesita la carpeta con los assets necesarios, se debe descargar desde este [link](https://drive.google.com/drive/folders/1ctb8Psen9-FvWM0dcCSWcFsnpkjUc9tuusp=sharing)  
+> Una vez descargada la capeta debemos ir a todos los archivos ___.json___ y cambiar las rutas por las propias 
+> segun donde se guarde la capeta de los assets
+
+
+## _En desarollo_
+> El proyecto se encuentra en desarollo, actualmente el juego contiene 3 niveles,  
+> asi mismo cada uno trae consigo enemigos, plataformas, trampas y recompensas.  
+> Los enemigos, las trampas y las recompensas(powerups), se crean de forma aleatoria por cada plataforma cumpliendo ciertos parametros.  
+> Los enemigos tienen 2 tipos de ataque, las trampas son estaticas, y solo existe un tipo de powerup  
+> Los niveles son desbloqueables y la puntuacion acumulada por el jugador se guarda en una base de datos SQL bajo el nombre ingresado   
 
 
