@@ -70,117 +70,92 @@ class Main_screen():
         self.rect_keyboard_image.centerx = ANCHO_VENTANA/2
         self.rect_keyboard_image.centery = ALTO_VENTANA/2
 
-        self.rect_a = pygame.Rect(self.rect_keyboard_image)
-        self.rect_a.h = self.rect_a.h/5
-        self.rect_a.w = self.rect_a.w/12
-        self.rect_a.x = self.rect_keyboard_image.x + (self.rect_keyboard_image.x*32)/100
-        self.rect_a.y = self.rect_keyboard_image.y + (self.rect_keyboard_image.y*55)/100
+        self.letters_list = ["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"]
+        self.letters_rect_list = []
 
-        self.rect_s = pygame.Rect(self.rect_a)
-        self.rect_s.x = self.rect_keyboard_image.x + (self.rect_keyboard_image.x*115)/100
-        self.rect_s.y = self.rect_keyboard_image.y + (self.rect_keyboard_image.y*55)/100
+        for i in range(26):
+            self.letters_rect_list.append(pygame.Rect(self.rect_keyboard_image))
+        for i in range(26):
+            self.letters_rect_list[i].h = self.letters_rect_list[i].h/5
+            self.letters_rect_list[i].w = self.letters_rect_list[i].w/12
 
-        self.rect_d = pygame.Rect(self.rect_a)
-        self.rect_d.x = self.rect_keyboard_image.x + (self.rect_keyboard_image.x*200)/100
-        self.rect_d.y = self.rect_keyboard_image.y + (self.rect_keyboard_image.y*55)/100
-
-        self.rect_f = pygame.Rect(self.rect_a)
-        self.rect_f.x = self.rect_keyboard_image.x + (self.rect_keyboard_image.x*280)/100
-        self.rect_f.y = self.rect_keyboard_image.y + (self.rect_keyboard_image.y*55)/100
-
-        self.rect_g = pygame.Rect(self.rect_a)
-        self.rect_g.x = self.rect_keyboard_image.x + (self.rect_keyboard_image.x*360)/100
-        self.rect_g.y = self.rect_keyboard_image.y + (self.rect_keyboard_image.y*55)/100
-
-        self.rect_h = pygame.Rect(self.rect_a)
-        self.rect_h.x = self.rect_keyboard_image.x + (self.rect_keyboard_image.x*440)/100
-        self.rect_h.y = self.rect_keyboard_image.y + (self.rect_keyboard_image.y*55)/100
-
-        self.rect_j = pygame.Rect(self.rect_a)
-        self.rect_j.x = self.rect_keyboard_image.x + (self.rect_keyboard_image.x*520)/100
-        self.rect_j.y = self.rect_keyboard_image.y + (self.rect_keyboard_image.y*55)/100
-
-        self.rect_k = pygame.Rect(self.rect_a)
-        self.rect_k.x = self.rect_keyboard_image.x + (self.rect_keyboard_image.x*600)/100
-        self.rect_k.y = self.rect_keyboard_image.y + (self.rect_keyboard_image.y*55)/100
-
-        self.rect_l = pygame.Rect(self.rect_a)
-        self.rect_l.x = self.rect_keyboard_image.x + (self.rect_keyboard_image.x*680)/100
-        self.rect_l.y = self.rect_keyboard_image.y + (self.rect_keyboard_image.y*55)/100
-
-        self.rect_q = pygame.Rect(self.rect_a)
-        self.rect_q.x = self.rect_keyboard_image.x 
-        self.rect_q.y = self.rect_keyboard_image.y 
-
-        self.rect_w = pygame.Rect(self.rect_a)
-        self.rect_w.x = self.rect_keyboard_image.x + (self.rect_keyboard_image.x*85)/100
-        self.rect_w.y = self.rect_keyboard_image.y
-
-        self.rect_e = pygame.Rect(self.rect_a)
-        self.rect_e.x = self.rect_keyboard_image.x + (self.rect_keyboard_image.x*165)/100
-        self.rect_e.y = self.rect_keyboard_image.y
-
-        self.rect_r = pygame.Rect(self.rect_a)
-        self.rect_r.x = self.rect_keyboard_image.x + (self.rect_keyboard_image.x*245)/100
-        self.rect_r.y = self.rect_keyboard_image.y 
-
-        self.rect_t = pygame.Rect(self.rect_a)
-        self.rect_t.x = self.rect_keyboard_image.x + (self.rect_keyboard_image.x*325)/100
-        self.rect_t.y = self.rect_keyboard_image.y
-
-        self.rect_y = pygame.Rect(self.rect_a)
-        self.rect_y.x = self.rect_keyboard_image.x + (self.rect_keyboard_image.x*405)/100
-        self.rect_y.y = self.rect_keyboard_image.y
-
-        self.rect_u = pygame.Rect(self.rect_a)
-        self.rect_u.x = self.rect_keyboard_image.x + (self.rect_keyboard_image.x*485)/100
-        self.rect_u.y = self.rect_keyboard_image.y 
-
-        self.rect_i = pygame.Rect(self.rect_a)
-        self.rect_i.x = self.rect_keyboard_image.x + (self.rect_keyboard_image.x*565)/100
-        self.rect_i.y = self.rect_keyboard_image.y
-
-        self.rect_o = pygame.Rect(self.rect_a)
-        self.rect_o.x = self.rect_keyboard_image.x + (self.rect_keyboard_image.x*645)/100
-        self.rect_o.y = self.rect_keyboard_image.y
-
-        self.rect_p = pygame.Rect(self.rect_a)
-        self.rect_p.x = self.rect_keyboard_image.x + (self.rect_keyboard_image.x*725)/100
-        self.rect_p.y = self.rect_keyboard_image.y
-
-        self.rect_z = pygame.Rect(self.rect_a)
-        self.rect_z.x = self.rect_keyboard_image.x + (self.rect_keyboard_image.x*90)/100
-        self.rect_z.y = self.rect_keyboard_image.y + (self.rect_keyboard_image.y*100)/100
-
-        self.rect_x = pygame.Rect(self.rect_a)
-        self.rect_x.x = self.rect_keyboard_image.x + (self.rect_keyboard_image.x*170)/100
-        self.rect_x.y = self.rect_keyboard_image.y + (self.rect_keyboard_image.y*100)/100
-
-        self.rect_c = pygame.Rect(self.rect_a)
-        self.rect_c.x = self.rect_keyboard_image.x + (self.rect_keyboard_image.x*250)/100
-        self.rect_c.y = self.rect_keyboard_image.y + (self.rect_keyboard_image.y*100)/100
-
-        self.rect_v = pygame.Rect(self.rect_a)
-        self.rect_v.x = self.rect_keyboard_image.x + (self.rect_keyboard_image.x*330)/100
-        self.rect_v.y = self.rect_keyboard_image.y + (self.rect_keyboard_image.y*100)/100
-
-        self.rect_b = pygame.Rect(self.rect_a)
-        self.rect_b.x = self.rect_keyboard_image.x + (self.rect_keyboard_image.x*410)/100
-        self.rect_b.y = self.rect_keyboard_image.y + (self.rect_keyboard_image.y*100)/100
-
-        self.rect_n = pygame.Rect(self.rect_a)
-        self.rect_n.x = self.rect_keyboard_image.x + (self.rect_keyboard_image.x*490)/100
-        self.rect_n.y = self.rect_keyboard_image.y + (self.rect_keyboard_image.y*100)/100
-
-        self.rect_m = pygame.Rect(self.rect_a)
-        self.rect_m.x = self.rect_keyboard_image.x + (self.rect_keyboard_image.x*570)/100
-        self.rect_m.y = self.rect_keyboard_image.y + (self.rect_keyboard_image.y*100)/100
-
-        self.rect_space = pygame.Rect(self.rect_keyboard_image)
-        self.rect_space.h = self.rect_space.h/5
-        self.rect_space.w = self.rect_space.w/6
-        self.rect_space.x = self.rect_keyboard_image.x + (self.rect_keyboard_image.x*67)/100
-        self.rect_space.y = self.rect_keyboard_image.y + (self.rect_keyboard_image.y*150)/100
+        self.letters_rect_list[0].x = self.rect_keyboard_image.x + (self.rect_keyboard_image.x*32)/100
+        self.letters_rect_list[0].y = self.rect_keyboard_image.y + (self.rect_keyboard_image.y*55)/100
+        
+        self.letters_rect_list[18].x = self.rect_keyboard_image.x + (self.rect_keyboard_image.x*115)/110
+        self.letters_rect_list[18].y = self.rect_keyboard_image.y + (self.rect_keyboard_image.y*55)/100
+        
+        self.letters_rect_list[3].x = self.rect_keyboard_image.x + (self.rect_keyboard_image.x*200)/100
+        self.letters_rect_list[3].y = self.rect_keyboard_image.y + (self.rect_keyboard_image.y*55)/100
+        
+        self.letters_rect_list[5].x = self.rect_keyboard_image.x + (self.rect_keyboard_image.x*280)/100
+        self.letters_rect_list[5].y = self.rect_keyboard_image.y + (self.rect_keyboard_image.y*55)/100
+        
+        self.letters_rect_list[6].x = self.rect_keyboard_image.x + (self.rect_keyboard_image.x*360)/100
+        self.letters_rect_list[6].y = self.rect_keyboard_image.y + (self.rect_keyboard_image.y*55)/100
+        
+        self.letters_rect_list[7].x = self.rect_keyboard_image.x + (self.rect_keyboard_image.x*440)/100
+        self.letters_rect_list[7].y = self.rect_keyboard_image.y + (self.rect_keyboard_image.y*55)/100
+        
+        self.letters_rect_list[9].x = self.rect_keyboard_image.x + (self.rect_keyboard_image.x*520)/100
+        self.letters_rect_list[9].y = self.rect_keyboard_image.y + (self.rect_keyboard_image.y*55)/100
+        
+        self.letters_rect_list[10].x = self.rect_keyboard_image.x + (self.rect_keyboard_image.x*600)/100
+        self.letters_rect_list[10].y = self.rect_keyboard_image.y + (self.rect_keyboard_image.y*55)/100
+        
+        self.letters_rect_list[11].x = self.rect_keyboard_image.x + (self.rect_keyboard_image.x*680)/100
+        self.letters_rect_list[11].y = self.rect_keyboard_image.y + (self.rect_keyboard_image.y*55)/100
+        
+        self.letters_rect_list[16].x = self.rect_keyboard_image.x 
+        self.letters_rect_list[16].y = self.rect_keyboard_image.y 
+        
+        self.letters_rect_list[22].x = self.rect_keyboard_image.x + (self.rect_keyboard_image.x*85)/100
+        self.letters_rect_list[22].y = self.rect_keyboard_image.y
+        
+        self.letters_rect_list[4].x = self.rect_keyboard_image.x + (self.rect_keyboard_image.x*165)/100
+        self.letters_rect_list[4].y = self.rect_keyboard_image.y
+        
+        self.letters_rect_list[17].x = self.rect_keyboard_image.x + (self.rect_keyboard_image.x*245)/100
+        self.letters_rect_list[17].y = self.rect_keyboard_image.y 
+        
+        self.letters_rect_list[19].x = self.rect_keyboard_image.x + (self.rect_keyboard_image.x*325)/100
+        self.letters_rect_list[19].y = self.rect_keyboard_image.y
+        
+        self.letters_rect_list[24].x = self.rect_keyboard_image.x + (self.rect_keyboard_image.x*405)/100
+        self.letters_rect_list[24].y = self.rect_keyboard_image.y
+        
+        self.letters_rect_list[20].x = self.rect_keyboard_image.x + (self.rect_keyboard_image.x*485)/100
+        self.letters_rect_list[20].y = self.rect_keyboard_image.y 
+        
+        self.letters_rect_list[8].x = self.rect_keyboard_image.x + (self.rect_keyboard_image.x*565)/100
+        self.letters_rect_list[8].y = self.rect_keyboard_image.y
+        
+        self.letters_rect_list[14].x = self.rect_keyboard_image.x + (self.rect_keyboard_image.x*645)/100
+        self.letters_rect_list[14].y = self.rect_keyboard_image.y
+        
+        self.letters_rect_list[15].x = self.rect_keyboard_image.x + (self.rect_keyboard_image.x*725)/100
+        self.letters_rect_list[15].y = self.rect_keyboard_image.y
+        
+        self.letters_rect_list[25].x = self.rect_keyboard_image.x + (self.rect_keyboard_image.x*90)/100
+        self.letters_rect_list[25].y = self.rect_keyboard_image.y + (self.rect_keyboard_image.y*100)/100
+        
+        self.letters_rect_list[23].x = self.rect_keyboard_image.x + (self.rect_keyboard_image.x*170)/100
+        self.letters_rect_list[23].y = self.rect_keyboard_image.y + (self.rect_keyboard_image.y*100)/100
+        
+        self.letters_rect_list[2].x = self.rect_keyboard_image.x + (self.rect_keyboard_image.x*250)/100
+        self.letters_rect_list[2].y = self.rect_keyboard_image.y + (self.rect_keyboard_image.y*100)/100
+        
+        self.letters_rect_list[21].x = self.rect_keyboard_image.x + (self.rect_keyboard_image.x*330)/100
+        self.letters_rect_list[21].y = self.rect_keyboard_image.y + (self.rect_keyboard_image.y*100)/100
+        
+        self.letters_rect_list[1].x = self.rect_keyboard_image.x + (self.rect_keyboard_image.x*410)/100
+        self.letters_rect_list[1].y = self.rect_keyboard_image.y + (self.rect_keyboard_image.y*100)/100
+        
+        self.letters_rect_list[13].x = self.rect_keyboard_image.x + (self.rect_keyboard_image.x*490)/100
+        self.letters_rect_list[13].y = self.rect_keyboard_image.y + (self.rect_keyboard_image.y*100)/100
+        
+        self.letters_rect_list[12].x = self.rect_keyboard_image.x + (self.rect_keyboard_image.x*570)/100
+        self.letters_rect_list[12].y = self.rect_keyboard_image.y + (self.rect_keyboard_image.y*100)/100
 
         self.rect_input_space = pygame.Rect(self.rect_keyboard_image)
         self.rect_input_space.w = ANCHO_VENTANA - (ANCHO_VENTANA*40)/100
@@ -295,58 +270,10 @@ class Main_screen():
         #ESTAMOS EN EL TECLADO
         if len(self.name) < 3:
             if not self.has_name:
-                if self.rect_a.collidepoint(mouse_pos):
-                    self.name = "{0}A".format(self.name)
-                if self.rect_b.collidepoint(mouse_pos):
-                    self.name = "{0}B".format(self.name)
-                if self.rect_c.collidepoint(mouse_pos):
-                    self.name = "{0}C".format(self.name)
-                if self.rect_d.collidepoint(mouse_pos):
-                    self.name = "{0}D".format(self.name)
-                if self.rect_e.collidepoint(mouse_pos):
-                    self.name = "{0}E".format(self.name)
-                if self.rect_f.collidepoint(mouse_pos):
-                    self.name = "{0}F".format(self.name)
-                if self.rect_g.collidepoint(mouse_pos):
-                    self.name = "{0}G".format(self.name)
-                if self.rect_h.collidepoint(mouse_pos):
-                    self.name = "{0}H".format(self.name)
-                if self.rect_i.collidepoint(mouse_pos):
-                    self.name = "{0}I".format(self.name)
-                if self.rect_j.collidepoint(mouse_pos):
-                    self.name = "{0}J".format(self.name)
-                if self.rect_k.collidepoint(mouse_pos):
-                    self.name = "{0}K".format(self.name)
-                if self.rect_l.collidepoint(mouse_pos):
-                    self.name = "{0}L".format(self.name)
-                if self.rect_m.collidepoint(mouse_pos):
-                    self.name = "{0}M".format(self.name)
-                if self.rect_n.collidepoint(mouse_pos):
-                    self.name = "{0}N".format(self.name)
-                if self.rect_o.collidepoint(mouse_pos):
-                    self.name = "{0}O".format(self.name)
-                if self.rect_p.collidepoint(mouse_pos):
-                    self.name = "{0}P".format(self.name)
-                if self.rect_q.collidepoint(mouse_pos):
-                    self.name = "{0}Q".format(self.name)
-                if self.rect_r.collidepoint(mouse_pos):
-                    self.name = "{0}R".format(self.name)
-                if self.rect_s.collidepoint(mouse_pos):
-                    self.name = "{0}S".format(self.name)
-                if self.rect_t.collidepoint(mouse_pos):
-                    self.name = "{0}T".format(self.name)
-                if self.rect_u.collidepoint(mouse_pos):
-                    self.name = "{0}U".format(self.name)
-                if self.rect_v.collidepoint(mouse_pos):
-                    self.name = "{0}V".format(self.name)
-                if self.rect_w.collidepoint(mouse_pos):
-                    self.name = "{0}W".format(self.name)
-                if self.rect_x.collidepoint(mouse_pos):
-                    self.name = "{0}X".format(self.name)
-                if self.rect_y.collidepoint(mouse_pos):
-                    self.name = "{0}Y".format(self.name)
-                if self.rect_z.collidepoint(mouse_pos):
-                    self.name = "{0}Z".format(self.name)
+                for i in range(len(self.letters_list)):
+                    if self.letters_rect_list[i].collidepoint(mouse_pos):
+                        self.name = "{0}{1}".format(self.name, self.letters_list[i])    
+
                 self.text_to_impress = self.font.render(self.name, 0, (255, 255, 255))
         else:
             if self.rect_enter.collidepoint(mouse_pos):
@@ -406,7 +333,6 @@ class Main_screen():
     def draw(self, screen, lvls_unlocked):
         if DEBUG:
             pygame.draw.rect(screen, (255, 255, 255), self.rect_header_image)
-        
         screen.blit(self.background_image, (0,0))
         screen.blit(self.title_image, (self.rect_title_image))
         screen.blit(self.quit_image, self.rect_quit_image)
