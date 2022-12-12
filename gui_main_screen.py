@@ -273,7 +273,6 @@ class Main_screen():
                 for i in range(len(self.letters_list)):
                     if self.letters_rect_list[i].collidepoint(mouse_pos):
                         self.name = "{0}{1}".format(self.name, self.letters_list[i])    
-
                 self.text_to_impress = self.font.render(self.name, 0, (255, 255, 255))
         else:
             if self.rect_enter.collidepoint(mouse_pos):
