@@ -48,13 +48,26 @@ class Level_manager():
 
 
 
-
-    #  self.lvl_unlocked = 1
-    #  self.dic_lvl = self.import_json()
-    #  self.imagen_fondo = pygame.image.load(r"{0}".format(self.dic_lvl["background_image_path"])).convert()
-    #  self.imagen_fondo = pygame.transform.scale(self.imagen_fondo,(ANCHO_VENTANA,ALTO_VENTANA))
-    #  self.plataform_list = create_platforms_json(self.dic_lvl["platforms_list"])
-    #  self.rewards_list = create_rewards_json(self.dic_lvl["rewards"]["image_path"], int(self.dic_lvl["rewards"]["width"]), int(self.dic_lvl["rewards"]["height"]), int(self.dic_lvl["rewards"]["vertical_speed"]), int(self.dic_lvl["rewards"]["float_update_rate"]), int(self.dic_lvl["rewards"]["update_rate"]), self.plataform_list)
-    #  self.lista_trampas = create_tramps_json(self.plataform_list, self.dic_lvl["tramps"]["path_image"], int(self.dic_lvl["tramps"]["height"]), int(self.dic_lvl["tramps"]["width"]))
-    #  self.player_1 = Player(self.dic_lvl["player"], self.dic_lvl["life_bar"], self.dic_lvl["score_table"], difficulty)
-    #  self.enemy_list = create_enemys_json(self.plataform_list, self.dic_lvl["enemy"], difficulty)
+    def choose_lvl(self, difficulty, level_elected):
+        election = True
+        playing = True
+        imagen_fondo, rewards_list, plataform_list, lista_trampas, player_1, enemys_list = None, None, None, None, None, None
+        if level_elected == "one":
+            imagen_fondo, rewards_list, plataform_list, lista_trampas, player_1, enemys_list = self.create_level(difficulty, 1)     
+        elif level_elected == "two":
+            try:
+                imagen_fondo, rewards_list, plataform_list, lista_trampas, player_1, enemys_list = self.create_level(difficulty, 2)
+            except:
+                print("no esta el nivel desbloqueado")
+                level_elected = None
+                election = False
+                playing = False
+        else:
+            try:
+                imagen_fondo, rewards_list, plataform_list, lista_trampas, player_1, enemys_list = self.create_level(difficulty, 3)
+            except:
+                print("no esta el nivel desbloqueado")
+                level_elected = None
+                election = False
+                playing = False
+        return imagen_fondo, rewards_list, plataform_list, lista_trampas, player_1, enemys_list, election, playing

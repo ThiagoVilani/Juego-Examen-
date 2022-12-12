@@ -60,27 +60,7 @@ while True:
 #Cuando ya elegi el nivel
     if level_elected != None:
         print("ya se eligio un nivel")
-        election = True
-        playing = True
-        if level_elected == "one":
-            imagen_fondo, rewards_list, plataform_list, lista_trampas, player_1, enemys_list = level_manager.create_level(difficulty, 1)
-     
-        elif level_elected == "two":
-            try:
-                imagen_fondo, rewards_list, plataform_list, lista_trampas, player_1, enemys_list = level_manager.create_level(difficulty, 2)
-            except:
-                print("no esta el nivel desbloqueado")
-                level_elected = None
-                election = False
-                playing = False
-        else:
-            try:
-                imagen_fondo, rewards_list, plataform_list, lista_trampas, player_1, enemys_list = level_manager.create_level(difficulty, 3)
-            except:
-                print("no esta el nivel desbloqueado")
-                level_elected = None
-                election = False
-                playing = False
+        imagen_fondo, rewards_list, plataform_list, lista_trampas, player_1, enemys_list, election, playing = level_manager.choose_lvl(difficulty,level_elected)
         level_elected = None
 
 #Ya elegi nivel y dificultad
